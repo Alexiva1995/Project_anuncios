@@ -1,5 +1,7 @@
 {
   "name": "anuncios-app",
-  "integrations": {},
+  "integrations": {
+    "cordova": {}
+  },
   "type": "angular"
 }
