@@ -11,9 +11,9 @@ import { AuthService } from 'src/app/services/login/auth.service';
  declare var google;
 
 @Component({
-  selector: 'app-perfil',
-  templateUrl: './perfil.page.html',
-  styleUrls: ['./perfil.page.scss'],
+  selector: 'app-profile',
+  templateUrl: './profile.page.html',
+  styleUrls: ['./profile.page.scss'],
 })
 
 export class ProfilePage implements OnInit {
