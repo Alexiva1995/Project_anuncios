@@ -1,0 +1,67 @@
+.item-version {
+  padding-right: 10px !important;
+  padding-bottom: 10px !important;
+  text-align: right !important;
+}
+ion-content {
+  width: 100%;
+  height: 100%;
+  img {
+    margin-top: 20px;
+    height: 180px;
+    width: auto;
+    margin-bottom: 20px;
+  }
+  .title {
+    text-align: center;
+    font-size: 25px;
+    margin: auto;
+    font-weight: 550;
+  }
+  .olvidoClave {
+    margin-top: 15px;
+    padding-bottom: 20px;
+    width: 100%;
+    text-align: center;
+  }
+  .content {
+    margin: 10px;
+  }
+  ion-row {
+    margin: auto;
+  }
+}
+
+.btn-inicio {
+  margin-top: 15px;
+}
+
+.btn-otro {
+  margin: 15px 0px;
+}
+
+.body {
+  height: 100%;
+  padding: 15px;
+  background: url("/assets/img/fondo.jpg");
+}
+ion-label{
+  font-size: 25px!important;
+}
+ion-label.formul{
+  font-size: 20px!important;
+  margin-left: 10px;
+}
+.btn{
+  border: #7044ff 2px solid;
+  border-radius: 10px;
+}
+.btn-content{
+  padding: 0 15px !important;
+}
+.color-gris{
+  --color: #9a9a9a !important;
+}
+.color-tertiary{
+  color: #7044ff;
+}

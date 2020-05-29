@@ -1,0 +1,81 @@
+<ion-content>
+  <div class="body">
+    <ion-grid>
+      <ion-row class="ion-justify-content-center" align-item-center>
+          <img src="assets/img/logoGrande.png" onerror="this.src='assets/img/no_image_aviable.jpg'">
+      </ion-row>
+      <ion-row>
+        <ion-label color="tertiary" class="title" *ngIf="step == 'login'">
+          Inicio de Sesión
+        </ion-label>
+        <ion-label color="tertiary" class="title" *ngIf="step == 'recovery'">
+          Recuperar contraseña
+        </ion-label>
+      </ion-row>
+    </ion-grid>
+    <div class="content">
+      <form [formGroup]="formGroup" action="iniciarSesion()" *ngIf="step == 'login'">
+        <ion-item lines="none">
+          <ion-label position="stacked" color="tertiary" class="margin-b-label formul">
+              Correo Electrónico
+          </ion-label>
+          <ion-input formControlName="email" placeholder="" type="email" required [pattern]="'^[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$'" (ionChange)="update()" clearInput class="btn padding-input"> </ion-input>
+          <span class="error ion-padding" style="color: red;" *ngIf="!errorControl.email.pristine && errorControl.email.errors?.pattern">
+            Correo incorrecto
+          </span>
+        </ion-item>
+        <ion-item lines="none">
+          <ion-label position="stacked" color="tertiary" class="margin-b-label formul">
+              Contraseña
+          </ion-label>
+          <ion-input formControlName="password" placeholder="" type="password" clearInput class="btn padding-input">
+          </ion-input>
+          <span class="error ion-padding" style="color: red;" *ngIf="!errorControl.password.pristine && errorControl.password.errors?.minlength">
+            La contraseña debe contener al menos 8 caracteres
+          </span>
+          <span class="error ion-padding" style="color: red;" *ngIf="!errorControl.password.pristine && errorControl.password.errors?.required">
+            La contraseña es requerida
+          </span>
+        </ion-item>
+      </form>
+      <form [formGroup]="formGroup_" action="doRecovery()" *ngIf="step == 'recovery'">
+        <ion-item lines="none">
+          <ion-label position="stacked" color="tertiary" class="margin-b-label formul">
+              Correo Electrónico
+          </ion-label>
+          <ion-input inputmode='email' formControlName="email" placeholder="" type="text" (ionChange)="update()" clearInput class="btn padding-input"> </ion-input>
+          <span class="error ion-padding" style="color: red;" *ngIf="!errorControl_.email.pristine && errorControl.email.errors?.pattern">
+            Correo Incorrecto
+          </span>
+        </ion-item>
+      </form>
+    </div>
+    <div class="btn-content" style="margin-top: auto" *ngIf="step == 'login'">
+      <ion-button [disabled]="!formGroup.valid" class="btn-inicio" color="tertiary" expand="full" shape="round" type="submit" (click)="iniciarSesion()">
+        Iniciar Sesión
+      </ion-button>
+      <ion-button class="btn-otro color-gris" color="secundary" expand="full" type="button" shape="round" (click)="iniciarSesionGoogle()" disabled>
+        <i class="fab fa-google" slot="start" style=" margin-right: 5px;"></i>
+        Accede con Google
+      </ion-button>
+      <ion-button class="btn-otro" color="primary" expand="full" type="button" shape="round" (click)="goTo('/registro')">
+        Registrate
+      </ion-button>
+    </div>
+    <div class="btn-content" style="margin-top: auto" *ngIf="step == 'recovery'">
+      <ion-button [disabled]="formGroup_.controls.email.invalid" class="btn-inicio" color="tertiary" expand="full" shape="round" type="submit" (click)="doRecovery()">
+        Recuperar contraseña
+      </ion-button>
+    </div>
+    <div class="olvidoClave" (click)="step = 'recovery'" *ngIf="step == 'login'">
+      <span ion-text class="color-tertiary" style="width: 100%; margin-left: -5px; font-size: 14px;" >
+        RECUPERAR CONTRASEÑA
+      </span>
+    </div>
+    <div class="olvidoClave" (click)="step = 'login'" *ngIf="step == 'recovery'">
+      <span ion-text class="color-tertiary" style="width: 100%; margin-left: -5px; font-size: 14px;" >
+        INICIAR SESIÓN
+      </span>
+    </div>
+  </div>
+</ion-content>
