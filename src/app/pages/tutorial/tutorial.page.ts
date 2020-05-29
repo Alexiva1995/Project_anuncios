@@ -7,7 +7,7 @@ import { CONSTANTES } from 'src/app/services/constantes';
   templateUrl: './oboarding.page.html',
   styleUrls: ['./oboarding.page.scss'],
 })
-export class OboardingPage implements OnInit {
+export class TutorialPage implements OnInit {
   slidesOpts = {
     slidesPerView: 3,
     coverflowEffect: {
@@ -104,7 +104,7 @@ export class OboardingPage implements OnInit {
   }
 
   goTo(url) {
-    localStorage.setItem(CONSTANTES.LOCAL_STORAGE.onboarding, 'true');
+    localStorage.setItem(CONSTANTES.LOCAL_STORAGE.tutorial, 'true');
     this.navCtrl.navigateForward(url)
   }
 

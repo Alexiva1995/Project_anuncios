@@ -38,11 +38,6 @@ export class LoginPage implements OnInit {
       password: ['', Validators.compose([Validators.required, Validators.minLength(8)])],
       remember_me: [true]
     });
-    this.formGroup_ = this.fb.group({
-      email: ['', [
-      Validators.required,
-      Validators.pattern("^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+.[a-zA-Z0-9-.]+$")]]
-    });
   }
   update(){
    let email;
