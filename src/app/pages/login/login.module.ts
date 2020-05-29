@@ -7,8 +7,7 @@ import { IonicModule } from '@ionic/angular';
 
 import { LoginPage } from './login.page';
 import { ComponentsModule } from 'src/app/components/component.module';
-import { AuthService } from 'src/app/services/login/auth.service';
-
+import { AuthService } from 'src/app/services/auth/auth.service';
 const routes: Routes = [
   {
     path: '',

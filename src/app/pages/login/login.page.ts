@@ -1,16 +1,13 @@
 import { Component, OnInit } from '@angular/core';
-import { ambiente } from 'src/app/app.module';
 import { FormGroup, Validators, FormBuilder } from '@angular/forms';
 import { NavController } from '@ionic/angular';
 import { UtilitiesService } from 'src/app/services/utilities/utilities.service';
 import { CONSTANTES } from 'src/app/services/constantes';
-import { AuthService } from '../../services/login/auth.service';
 import { Router } from '@angular/router';
-import { UserService } from 'src/app/services/user/user.service';
+import { AuthService } from 'src/app/services/auth/auth.service';
 /* import * as firebase from 'firebase';
  import { AngularFireAuth } from '@angular/fire/auth';   
  import { GooglePlus } from '@ionic-native/google-plus/ngx'; */
-import { NotificationsService } from 'src/app/notifications.service';
 @Component({
   selector: 'app-login',
   templateUrl: './login.page.html',
@@ -19,7 +16,6 @@ import { NotificationsService } from 'src/app/notifications.service';
 export class LoginPage implements OnInit {
 
   public formGroup: FormGroup;
-  ambiente = ambiente;
   formGroup_: any;
   step: string = 'login';
   constructor(
@@ -28,8 +24,7 @@ export class LoginPage implements OnInit {
     private utilities: UtilitiesService,
     private navCtrl: NavController,
     private router: Router,
-    public userS: UserService,
-    private serviceNotification: NotificationsService,
+    public userS: AuthService,
    /*  private afAuth: AngularFireAuth,   
      private googlePlus: GooglePlus  */
   ) {
@@ -55,12 +50,10 @@ export class LoginPage implements OnInit {
     // this.service.loginp(data);
     try {
       // Iniciamos la consulta
-      this.service.login(data).then((res: any) => {
+      this.service.signIn(data).then((res: any) => {
         //Almacenamos en local storage el nombre del usuario
         console.log(res)
         localStorage.setItem(CONSTANTES.LOCAL_STORAGE.token, res.access_token);
-        localStorage.setItem(CONSTANTES.LOCAL_STORAGE.fotoPerfil, res.fotoPerfilURL);
-        localStorage.setItem(CONSTANTES.LOCAL_STORAGE.ayuda, 'true');
         this.utilities.dismissLoading();
         this.getUser();
       }, e => {
@@ -114,8 +107,7 @@ export class LoginPage implements OnInit {
       let data = JSON.parse(JSON.stringify(res));
       //this.serviceNotification.getToken();
       console.log("getUser",data);
-      localStorage.setItem(CONSTANTES.LOCAL_STORAGE.usuario, data.id);
-      localStorage.setItem(CONSTANTES.LOCAL_STORAGE.nombreUsuario, data.name);
+      //localStorage.setItem(CONSTANTES.LOCAL_STORAGE.usuario, data.id);
       this.navCtrl.navigateRoot('/home/libros');
     },(err)=>{
       
@@ -129,7 +121,7 @@ export class LoginPage implements OnInit {
   let data = this.formGroup_.value;
   try {
     // Iniciamos la consulta
-    this.service.recovery(data).then((res: any) => {
+    this.service.signUp(data).then((res: any) => {
       this.utilities.dismissLoading();
       this.utilities.displayToastButtonTime(res.msj);
     }, e => {

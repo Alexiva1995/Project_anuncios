@@ -66,8 +66,8 @@ export class UtilitiesService {
     }
     const toast = await this.toastCtrl.create({
       message: text,
-      showCloseButton: true,
-      closeButtonText: btnTxt,
+      /* showCloseButton: true, */
+     /*  closeButtonText: btnTxt, */
       cssClass: "toastMid",
       position: pos,
     });
@@ -98,9 +98,9 @@ export class UtilitiesService {
     }
     const toast = await this.toastCtrl.create({
       message: text,
-      showCloseButton: true,
+      /* showCloseButton: true, */
       duration: t,
-      closeButtonText: btnTxt,
+     /*  closeButtonText: btnTxt, */
       cssClass: "toastMid",
       position: pos,
     });

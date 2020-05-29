@@ -3,9 +3,9 @@ import { NavController } from '@ionic/angular';
 import { CONSTANTES } from 'src/app/services/constantes';
 
 @Component({
-  selector: 'app-oboarding',
-  templateUrl: './oboarding.page.html',
-  styleUrls: ['./oboarding.page.scss'],
+  selector: 'app-tutorial',
+  templateUrl: './tutorial.page.html',
+  styleUrls: ['./tutorial.page.scss'],
 })
 export class TutorialPage implements OnInit {
   slidesOpts = {

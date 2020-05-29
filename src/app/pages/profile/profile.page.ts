@@ -6,8 +6,7 @@ import { Camera, CameraOptions } from '@ionic-native/camera/ngx';
 import { CONSTANTES } from 'src/app/services/constantes';
 import { Geolocation } from '@ionic-native/geolocation/ngx';
 import { WebView } from '@ionic-native/ionic-webview/ngx';
-import { AuthService } from 'src/app/services/login/auth.service';
-
+import { AuthService } from 'src/app/services/auth/auth.service';
  declare var google;
 
 @Component({
@@ -202,7 +201,7 @@ export class ProfilePage implements OnInit {
         }, {
           text: 'Si',
           handler: () => {
-            this.auth.logout();
+            //this.auth.logout();
           }
         }
       ]
@@ -300,7 +299,7 @@ checkForm(){
       }, {
         text: 'Si',
         handler: () => {
-          this.auth.delete(this.userId);
+          //this.auth.delete(this.userId);
         }
       }
     ]

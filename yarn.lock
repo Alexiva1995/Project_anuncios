@@ -983,10 +983,31 @@
     lodash "^4.17.13"
     to-fast-properties "^2.0.0"
 
+"@ionic-native/camera@^5.26.0":
+  version "5.26.0"
+  resolved "https://registry.npm.taobao.org/@ionic-native/camera/download/@ionic-native/camera-5.26.0.tgz#af174247751f020e47f93c41ed862dd6b0f8c40d"
+  integrity sha1-rxdCR3UfAg5H+TxB7YYt1rD4xA0=
+  dependencies:
+    "@types/cordova" latest
+
 "@ionic-native/core@^5.0.7":
   version "5.26.0"
   resolved "https://registry.npm.taobao.org/@ionic-native/core/download/@ionic-native/core-5.26.0.tgz#ba1fc73c4fcc4419e08dc6ed06df48eabad0f56f"
   integrity sha1-uh/HPE/MRBngjcbtBt9I6rrQ9W8=
+  dependencies:
+    "@types/cordova" latest
+
+"@ionic-native/geolocation@^5.26.0":
+  version "5.26.0"
+  resolved "https://registry.npm.taobao.org/@ionic-native/geolocation/download/@ionic-native/geolocation-5.26.0.tgz#16221c777acf1777e5e2205c1909c48b90d81442"
+  integrity sha1-FiIcd3rPF3fl4iBcGQnEi5DYFEI=
+  dependencies:
+    "@types/cordova" latest
+
+"@ionic-native/ionic-webview@^5.26.0":
+  version "5.26.0"
+  resolved "https://registry.npm.taobao.org/@ionic-native/ionic-webview/download/@ionic-native/ionic-webview-5.26.0.tgz#8494adeb81f0210907eb04dee257fde71f280c75"
+  integrity sha1-hJSt64HwIQkH6wTe4lf95x8oDHU=
   dependencies:
     "@types/cordova" latest
 
@@ -2595,6 +2616,21 @@ copy-webpack-plugin@5.1.1:
     schema-utils "^1.0.0"
     serialize-javascript "^2.1.2"
     webpack-log "^2.0.0"
+
+cordova-plugin-camera@4.1.0:
+  version "4.1.0"
+  resolved "https://registry.npm.taobao.org/cordova-plugin-camera/download/cordova-plugin-camera-4.1.0.tgz#6474a3e080c4662aa00fd7425705d301c693ddc0"
+  integrity sha1-ZHSj4IDEZiqgD9dCVwXTAcaT3cA=
+
+cordova-plugin-geolocation@4.0.2:
+  version "4.0.2"
+  resolved "https://registry.npm.taobao.org/cordova-plugin-geolocation/download/cordova-plugin-geolocation-4.0.2.tgz#4668a01ae8a49e27c5515f8b81880983e96d7eb3"
+  integrity sha1-RmigGuiknifFUV+LgYgJg+ltfrM=
+
+cordova-plugin-ionic-webview@4.2.1:
+  version "4.2.1"
+  resolved "https://registry.npm.taobao.org/cordova-plugin-ionic-webview/download/cordova-plugin-ionic-webview-4.2.1.tgz#42a67bef248472659d421494feb8245ef27becfa"
+  integrity sha1-QqZ77ySEcmWdQhSU/rgkXvJ77Po=
 
 core-js-compat@^3.6.2:
   version "3.6.5"
