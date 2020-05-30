@@ -157,18 +157,18 @@ export class ProfilePage implements OnInit {
      });
    }
   
-   selectSearchResult(item){
+  //  selectSearchResult(item){
   
-     this.descripcion = item
-     this.form.controls["direccion"].setValue(item);
+  //    this.descripcion = item
+  //    this.form.controls["direccion"].setValue(item);
   
-     console.log(item)
-     this.autocompleteItems = [];
-     this.geocoder.geocode({'placeId': item.place_id}, (results, status) => {
+  //    console.log(item)
+  //    this.autocompleteItems = [];
+  //    this.geocoder.geocode({'placeId': item.place_id}, (results, status) => {
      
      
-     })
-   } 
+  //    })
+  //  } 
 
   limpiarDom(){
     this.descripcion=null;
