@@ -6,7 +6,7 @@ import { CONSTANTES } from '../constantes';
   providedIn: 'root'
 })
 export class ApiService {
-    url = '';//url apibase
+    url = 'http://valdusoft.com/ad';//url apibase
     constructor(public http: HttpClient) {}
     
     get(endpoint: string, params ?: any, reqOpts ?: any) {
