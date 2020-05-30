@@ -1,84 +1,153 @@
-.ast {
-    color: #ff148a;
+// COLORS 
+$color-primary:#003E83;
+$color-secondary:#F5B224;
+$color-tertiary-light:#E3E3E3;
+$color-tertiary-dark:#D6D6D6;
+$color-base:#FFFFFF;
+
+*{
+ margin: 0;
+ padding: 0;
+ box-sizing: border-box;
+}
+
+
+
+
+// container
+.container{
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
   }
-  
-  .img-header {
-    text-align: center;
-    max-width: 100px;
-    max-height: 100px;
-    margin: auto;
+
+// header
+.header{
+//  background-image:linear-gradient(360deg, rgba(255, 255, 255, 1) 0%, rgba(255, 255, 255, 1) 26%, transparent 0%), 
+//  url("../../../assets/img/fondo.png");
+ background-image: url(../../../assets/img/Fxfondo.png);
+ background-repeat: no-repeat;
+ background-size: cover;
+ background-position: 100% 75%;
+ display: flex;
+ justify-content: center;
+ align-items: center;
+  &-logo{
+    position: relative;
+    width: 142px;
+    height: 142px;
   }
-  .border-bottom {
-    border-bottom: solid 2px #7044ff;
-    margin: 0 1rem;
-    ion-button{
-      font-size: .9rem;
-    }
-  }
-  ion-datetime{
-    padding-left: 14px;
-  }
-  
-  .sub-text {
-    color: #ff148a;
-    font-size: smaller;
-    text-align: justify;
-    margin: 10px 15px;
-  }
-  
-  .boton-registro {
-    --background: transparent;
-    --background-focused: transparent;
-    --background-hover: transparent;
-    --color: #fff;
-    --color-activated: #fff;
-    --color-focused: #fff;
-    max-width: 200px;
-    margin: auto;
-  }
-  
-  
-  .menu-header{
-    padding-top: 5px; 
-  }
-  
-  .avatar {
-    margin: auto;
-    min-width: 100px;
-    max-width: 100px;
-    min-height: 100px;
-    max-height: 100px;
-    background: #7044ff;
-    border-radius: 10px;
-  }
-  
-  ion-grid{
-    background: #f7f6fb;
-  }
-  .img-default{
-    width: 25px;
-      height: 25px;
-      text-align: right;
-      position: relative;
-      left: 70px;
-      top: 70px;
-  }
-  ion-label{
-    font-size: 20px!important;
-  }
-  ion-searchbar{
-    padding-left: 0px;
-    padding-right: 0px;
-  }
-  ion-searchbar .searchbar-input.sc-ion-searchbar-md{
-    padding-top: 5px !important;
-    padding-bottom: 5px !important;
-    border-radius: 20px !important;
+ // Test
+ height:20vh;
+}
+
+.logo{
+max-width: 100%;
+border-radius: 50%;
+border: 9px solid $color-secondary;
+}
+
+.icono{
+ margin-left: 2px;
+ color:$color-primary ;
+}
+
+.icono-custom{
+  position: absolute;
+  top: 110px;
+  left: 92px;
+  font-size: 2.7rem;
+  transform: translate(15%,-13%);
+  color: $color-primary;
+}
+
+
+// Body
+.form{
+  &-titulo{
+    font-weight: 800;
+    margin-top: 1rem;
+    font-size: 18px;
+    color: $color-primary;
     text-align: center;
   }
-  ion-avatar .img-camera{
-    --border-radius: 10px;
+
+ &-input{
+   width: 90%;
+   margin:  0 auto;
+   margin-top: 1.5rem;
+   padding: .2rem;
+   border-radius: 14px;
+   box-shadow: 0px 0px 5px 2px rgba(0,0,0,0.12);
+ }
+
+}
+
+// footer
+.footer{
+ height: 20%;
+ margin-top: 1.4rem;
+ display: flex;
+ flex-direction: column;
+ justify-content: space-between;
+
+ &-button{
+   width: 90%;
+   margin: 0 auto;
+ }
+
+ &-account{
+   text-align: center;
+   color: $color-primary;
+   margin-bottom: 3rem;
+ }
+
+ p{
+   margin: 0;
+   text-align: center;
+   margin-top: .4rem;
+   color: $color-primary;
+ }
+
+}
+
+
+// custom property
+.btn-custom-4{
+  --color: #003E83;
+  --border-color:#F5B224;
+  --border-radius:25px;
+ }
+
+.btn-custom-3{
+ --color:#FFFFFF;
+ --background:#F5B224;
+ --border-radius:25px;
+ height: 43px;
+ margin-bottom: 1rem;
+}
+.btn-custom-2{
+ --color:#FFFFFF;
+ --background:#F5B224;
+}
+.btn-custom-1{
+ --color:#FFFFFF;
+ --border-color:rgba(245, 178, 36 , 0.5);
+}
+.title-custom{
+  float: left;
+}
+.title-custom-right{
+  float: right;
+  margin-right: 1rem;
+  color: $color-secondary;
+}
+
+.color{
+  color: $color-secondary;
+}
+ion-toolbar {
+  --background: transparent;
+  --ion-color-base: transparent !important;
   }
-ion-button.fs-16{
-    font-size: 16px;
-}  
