@@ -44,7 +44,7 @@ export class AuthService {
   }
 
      /**
-   * Método para obtener la informacion de un usuario
+   * Método para obtener la informacion del usuario logueado
    * **/
   public getUser() {
     return new Promise((resolve, reject) => {

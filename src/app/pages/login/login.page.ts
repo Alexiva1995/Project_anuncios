@@ -5,9 +5,7 @@ import { UtilitiesService } from 'src/app/services/utilities/utilities.service';
 import { CONSTANTES } from 'src/app/services/constantes';
 import { Router } from '@angular/router';
 import { AuthService } from 'src/app/services/auth/auth.service';
-/* import * as firebase from 'firebase';
- import { AngularFireAuth } from '@angular/fire/auth';   
- import { GooglePlus } from '@ionic-native/google-plus/ngx'; */
+
 @Component({
   selector: 'app-login',
   templateUrl: './login.page.html',
@@ -16,8 +14,7 @@ import { AuthService } from 'src/app/services/auth/auth.service';
 export class LoginPage implements OnInit {
 
   public formGroup: FormGroup;
-  formGroup_: any;
-  step: string = 'login';
+  public formGroup_: FormGroup;
   constructor(
     private service: AuthService,
     private fb: FormBuilder,
@@ -25,8 +22,6 @@ export class LoginPage implements OnInit {
     private navCtrl: NavController,
     private router: Router,
     public userS: AuthService,
-   /*  private afAuth: AngularFireAuth,   
-     private googlePlus: GooglePlus  */
   ) {
     this.formGroup = this.fb.group({
       email: ['', Validators.compose([Validators.required, Validators.pattern('^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+.[a-zA-Z0-9-.]+$')])],
@@ -74,43 +69,22 @@ export class LoginPage implements OnInit {
 
   }
 
-     /* async iniciarSesionGoogle() {
-     const res = await this.googlePlus.login({
-      'webClientId': '332692881398-t6ujib02qeqvb81q4gn10l1t382sa09c.apps.googleusercontent.com',
-      'offline': true
-    });
-    const resConfirmed = await this.afAuth.signInWithCredential(firebase.auth.GoogleAuthProvider.credential(res.idToken));
-    const user = resConfirmed.user;
-      this.service.loginp(user).then((res: any) => {
-       
-        console.log(res)
-        localStorage.setItem(CONSTANTES.LOCAL_STORAGE.token, res.access_token);
-        localStorage.setItem(CONSTANTES.LOCAL_STORAGE.fotoPerfil, user.photoURL);
-        localStorage.setItem(CONSTANTES.LOCAL_STORAGE.ayuda, 'true');
-     
-        this.getUser();
-      }, e => {
-        console.log(e);
-        
-        this.utilities.displayToastButtonTime(e.error.message ? e.error.message : CONSTANTES.MESSAGES.error);
-        console.error(e);
-      })
-  }   */
-
-
+  //Metodo de enrutamiento de pantallas
   goTo(url) {
     this.navCtrl.navigateForward(url)
   }
+
+  //Metodo para obtener la informacion del usuario logueado
   async getUser(){
-    
+    // Iniciamos la consulta
     await this.userS.getUser().then(async (res)=>{
       let data = JSON.parse(JSON.stringify(res));
       //this.serviceNotification.getToken();
-      console.log("getUser",data);
-      //localStorage.setItem(CONSTANTES.LOCAL_STORAGE.usuario, data.id);
+      //Guardamos el token recibido
+      localStorage.setItem(CONSTANTES.LOCAL_STORAGE.token, data.access_token);
       this.navCtrl.navigateRoot('/home/libros');
     },(err)=>{
-      
+      //En caso de error
       this.utilities.displayToastButtonTime(err.error.message ? err.error.message : CONSTANTES.MESSAGES.error);
       console.log("getError", err );
     })
@@ -133,6 +107,7 @@ export class LoginPage implements OnInit {
 
   }
   catch (e) {
+     //En caso de error
     this.utilities.dismissLoading();
     this.utilities.displayToastButtonTime(e.error.message ? e.error.message : CONSTANTES.MESSAGES.error);
     console.error(e);
@@ -141,9 +116,11 @@ export class LoginPage implements OnInit {
   }
 
   get errorControl() {
+    //getting para recibir la informacion del formulario
     return this.formGroup.controls;
   }
   get errorControl_(){
+    //getting para recibir la informacion del formulario secundario
     return this.formGroup_.controls;
   }
 }
