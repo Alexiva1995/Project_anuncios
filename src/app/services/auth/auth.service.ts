@@ -17,7 +17,7 @@ export class AuthService {
    * **/
   public signUp(data: any) {
     return new Promise((resolve, reject) => {
-      const seq = this.api.get('api/v1/clientes/listarTodos');
+      const seq = this.api.post('api/auth/register', data);
       seq.subscribe((res: any) => {
         resolve(res);
         console.log(res);
@@ -33,7 +33,19 @@ export class AuthService {
    * **/
   public signIn(data) {
     return new Promise((resolve, reject) => {
-      const seq = this.api.get('api/v1/clientes/listarTodos');
+      const seq = this.api.post('api/auth/login', data);
+      seq.subscribe((res: any) => {
+        resolve(res);
+        console.log(res);
+      }, err => {
+        reject(err);
+      });
+    })
+  }
+
+  public logOut() {
+    return new Promise((resolve, reject) => {
+      const seq = this.api.get('api/auth/logout', null, true);
       seq.subscribe((res: any) => {
         resolve(res);
         console.log(res);
@@ -48,7 +60,7 @@ export class AuthService {
    * **/
   public getUser() {
     return new Promise((resolve, reject) => {
-      const seq = this.api.get('api/v1/clientes/listarTodos');
+      const seq = this.api.get('api/auth/user', null, true);
       seq.subscribe((res: any) => {
         resolve(res);
         console.log(res);

@@ -37,6 +37,9 @@ $color-base:#FFFFFF;
     position: relative;
     width: 142px;
     height: 142px;
+    top: 2rem;
+    margin: 0 auto;
+    display: flex;
   }
  // Test
  height:20vh;
@@ -57,6 +60,11 @@ border: 9px solid $color-secondary;
   opacity: 1;
   font-size: 1.6rem;
  }
+
+ &.edit{
+  position: absolute;
+  right: 0;
+ }
 }
 
 .icono-custom{
@@ -68,6 +76,10 @@ border: 9px solid $color-secondary;
   color: $color-primary;
 }
 
+.errorInput{
+  border: solid 1px #f34242;
+}
+
 
 // Body
 .form{
@@ -76,6 +88,7 @@ border: 9px solid $color-secondary;
     font-size: 1.125rem;
     color: $color-primary;
     text-align: center;
+    margin-top: 4rem;
   }
 
  &-input{
@@ -129,9 +142,15 @@ border: 9px solid $color-secondary;
  --color:#FFFFFF;
  --background:#F5B224;
  --border-radius:25px;
- height: 43px;
+ height: 36px;
  margin-bottom: 1rem;
 }
+
+ion-button{
+  margin: 0 auto;
+  display: flex;
+}
+
 .btn-custom-2{
  --color:#FFFFFF;
  --background:#F5B224;
@@ -141,7 +160,9 @@ border: 9px solid $color-secondary;
  --border-color:rgba(245, 178, 36 , 0.5);
 }
 .title-custom{
-  float: left;
+  position: fixed;
+  width: 70%;
+  text-align: center;
 }
 .title-custom-right{
   float: right;

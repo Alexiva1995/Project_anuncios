@@ -18,12 +18,12 @@ export class RegisterPage implements OnInit {
     private fb: FormBuilder,
     private utilities: UtilitiesService,
     private navCtrl: NavController,
-    private router: Router,
-    public userS: AuthService) {
+    public auth: AuthService) {
     this.formGroup = this.fb.group({
-      user: ['', Validators.required],
+      name: ['', Validators.required],
       email: ['', Validators.compose([Validators.required, Validators.pattern('^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+.[a-zA-Z0-9-.]+$')])],
-      password: ['', Validators.compose([Validators.required, Validators.minLength(8)])]
+      password: ['', Validators.compose([Validators.required, Validators.minLength(8)])],
+      confirm_password: ['', Validators.compose([Validators.required, Validators.minLength(8)])]
     });
   }
 
@@ -32,6 +32,8 @@ export class RegisterPage implements OnInit {
 
   //Metodo de registrar usuario
   async signUp() {
+    console.log(this.formGroup);
+    
     await this.utilities.displayLoading();
     let data = this.formGroup.value;
     try {
@@ -41,6 +43,8 @@ export class RegisterPage implements OnInit {
         this.utilities.displayToastButtonTime('Registro exitoso');
       }, e => {
         //En caso de error
+        console.log(e);
+        
         this.utilities.dismissLoading();
         this.utilities.displayToastButtonTime(e.error.message ? e.error.message : CONSTANTES.MESSAGES.error);
       })
@@ -55,7 +59,14 @@ export class RegisterPage implements OnInit {
   }
 
 
+
+
   goTo(url) {
     this.navCtrl.navigateForward(url)
+  }
+
+  get errorControl() {
+    //getting para recibir la informacion del formulario
+    return this.formGroup.controls;
   }
 }

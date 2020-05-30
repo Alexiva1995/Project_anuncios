@@ -21,7 +21,7 @@ export class LoginPage implements OnInit {
     private utilities: UtilitiesService,
     private navCtrl: NavController,
     private router: Router,
-    public userS: AuthService,
+    public auth: AuthService,
   ) {
     this.formGroup = this.fb.group({
       email: ['', Validators.compose([Validators.required, Validators.pattern('^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+.[a-zA-Z0-9-.]+$')])],
@@ -29,42 +29,43 @@ export class LoginPage implements OnInit {
       remember_me: [true]
     });
   }
-  update(){
-   let email;
-   email =  this.formGroup.get("email").value;
-   email = email.toLocaleLowerCase();
-   this.formGroup.controls['email'].setValue(email);
-  }
+
 
   ngOnInit() {
   }
 
-  async iniciarSesion() {
+  async signIn() {
     await this.utilities.displayLoading();
     let data = this.formGroup.value;
-    // this.service.loginp(data);
-    try {
-      // Iniciamos la consulta
-      this.service.signIn(data).then((res: any) => {
-        //Almacenamos en local storage el nombre del usuario
-        console.log(res)
-        localStorage.setItem(CONSTANTES.LOCAL_STORAGE.token, res.access_token);
+
+    //Validamos el formulario
+    if(!this.formGroup.controls.email.valid || !this.formGroup.controls.password.valid){
+      this.utilities.displayToastButtonTime('Contrasena o correo electronico incorrecto');
+      this.utilities.dismissLoading();
+    }else{
+      try {
+        // Iniciamos la consulta
+        this.service.signIn(data).then((res: any) => {
+          //Almacenamos en local storage el nombre del usuario
+          console.log(res)
+          localStorage.setItem(CONSTANTES.LOCAL_STORAGE.token, res.access_token);
+          this.utilities.dismissLoading();
+          this.getUser();
+        }, e => {
+          //En caso de error
+          this.utilities.dismissLoading();
+          console.log(e);
+          
+          this.utilities.displayToastButtonTime(e.error.message ? e.error.message : CONSTANTES.MESSAGES.error);
+          console.error(e);
+        })
+  
+      }
+      catch (e) {
         this.utilities.dismissLoading();
-        this.getUser();
-      }, e => {
-        //En caso de error
-        this.utilities.dismissLoading();
-        console.log(e);
-        
         this.utilities.displayToastButtonTime(e.error.message ? e.error.message : CONSTANTES.MESSAGES.error);
         console.error(e);
-      })
-
-    }
-    catch (e) {
-      this.utilities.dismissLoading();
-      this.utilities.displayToastButtonTime(e.error.message ? e.error.message : CONSTANTES.MESSAGES.error);
-      console.error(e);
+      }
     }
 
   }
@@ -77,7 +78,7 @@ export class LoginPage implements OnInit {
   //Metodo para obtener la informacion del usuario logueado
   async getUser(){
     // Iniciamos la consulta
-    await this.userS.getUser().then(async (res)=>{
+    await this.auth.getUser().then(async (res)=>{
       let data = JSON.parse(JSON.stringify(res));
       //this.serviceNotification.getToken();
       //Guardamos el token recibido
@@ -118,9 +119,5 @@ export class LoginPage implements OnInit {
   get errorControl() {
     //getting para recibir la informacion del formulario
     return this.formGroup.controls;
-  }
-  get errorControl_(){
-    //getting para recibir la informacion del formulario secundario
-    return this.formGroup_.controls;
   }
 }

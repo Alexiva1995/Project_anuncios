@@ -12,34 +12,34 @@
       </div>
       <div class="header-buttons">
         <div class="button">
-          <ion-button expand="round" class="btn-custom-2">Ingresar</ion-button>
+          <ion-button expand="round" class="btn-custom-2" (click)="goTo('/login')">Ingresar</ion-button>
         </div>
         <div class="button">
-          <ion-button expand="round"  fill="outline" class="btn-custom-1">Registrarse</ion-button>
+          <ion-button expand="round"  fill="outline" class="btn-custom-1" >Registrarse</ion-button>
         </div>
       </div>
     </div>
-    <form class="form" [formGroup]="formGroup">
-      <div class="form-input">
-        <ion-input formControlName="user" placeholder="Nombre de usuario">
+    <form class="form" [formGroup]="formGroup" >
+      <div class="form-input" [ngClass]="{'errorInput': errorControl.name.errors?.required && !errorControl.name.pristine}">
+        <ion-input formControlName="name" placeholder="Nombre del usuario" inputmode="text" type="text">
           <ion-icon name="person-outline" class="icono"></ion-icon>
         </ion-input>
       </div>
 
-      <div class="form-input">
-        <ion-input  formControlName="email" placeholder="Correo Electrónico">
+      <div class="form-input" [ngClass]="{'errorInput': errorControl.email.errors?.pattern}">
+        <ion-input  formControlName="email" placeholder="Correo Electrónico" inputmode="email" type="email">
           <ion-icon name="mail-outline" class="icono"></ion-icon>
         </ion-input>
       </div>
 
-      <div class="form-input">
-        <ion-input formControlName="password" placeholder="Contraseña">
+      <div class="form-input" [ngClass]="{'errorInput': errorControl.password.errors?.minlength}">
+        <ion-input formControlName="password" placeholder="Contraseña" inputmode="password" type="password">
           <ion-icon name="lock-closed-outline" class="icono"></ion-icon>
         </ion-input>
       </div>
 
-      <div class="form-input">
-        <ion-input formControlName="password" placeholder="Repetir Contraseña">
+      <div class="form-input" [ngClass]="{'errorInput': errorControl.confirm_password.value != errorControl.password.value && !errorControl.confirm_password.pristine}">
+        <ion-input formControlName="confirm_password" placeholder="Repetir Contraseña" inputmode="password" type="password">
           <ion-icon name="lock-closed-outline" class="icono"></ion-icon>
         </ion-input>
       </div>
@@ -47,10 +47,10 @@
     </form>
     <div class="footer">
       <div class="footer-button">
-        <ion-button expand="block"  class="btn-custom-3">INGRESAR</ion-button>
+        <ion-button expand="block"  class="btn-custom-3" (click)="signUp()" [disabled]="formGroup.status == 'INVALID'">INGRESAR</ion-button>
       </div>
       <div class="footer-account">
-        ¿Ya tienes una cuenta? <b>Ingresa</b>
+        ¿Ya tienes una cuenta? <b (click)="goTo('/login')">Ingresa</b>
       </div>
     </div>
   </div>
