@@ -25,7 +25,7 @@ export class ProfilePage implements OnInit {
    autocompleteItems: any[];
   location: any;
    placeid: any;
-   public geocoder = new google.maps.Geocoder;
+  //  public geocoder = new google.maps.Geocoder;
    public zone: NgZone;
   descripcion
   latitud = 0
@@ -47,6 +47,7 @@ export class ProfilePage implements OnInit {
     this.form = this.fb.group({
       name: ['', Validators.compose([Validators.required])],
       apellido: [''],
+      password: ['', Validators.compose([Validators.required, Validators.minLength(8)])],
       direccion: ['', Validators.compose([Validators.required])],
       email: ['', Validators.compose([Validators.required, Validators.pattern(/^([\w-\.]+)@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.)|(([\w-]+\.)+))([a-zA-Z]{2,4}|[0-9]{1,3})(\]?)$/)])],
       telefono: ['', Validators.compose([Validators.required, Validators.maxLength(20), Validators.minLength(11)])],
@@ -57,15 +58,15 @@ export class ProfilePage implements OnInit {
       fk_rolid: [1]
     });
 
-     this.GoogleAutocomplete = new google.maps.places.AutocompleteService();
-     this.autocomplete = { input: '' };
-     this.autocompleteItems = [];
-     this.zone = Zone;
+    //  this.GoogleAutocomplete = new google.maps.places.AutocompleteService();
+    //  this.autocomplete = { input: '' };
+    //  this.autocompleteItems = [];
+    //  this.zone = Zone;
    }
 
    async ngOnInit() {
     /* await this.getUser(); */
-    await this.getLocation();
+    // await this.getLocation();
   }
 
 

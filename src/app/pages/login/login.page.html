@@ -19,20 +19,20 @@
         </div>
       </div>
     </div>
-    <div class="form">
+    <form class="form" [formGroup]="formGroup">
       <div class="form-input">
-        <ion-input placeholder="Correo electrónico ó Usuario">
+        <ion-input  formControlName="email" placeholder="Correo electrónico ó Usuario">
           <ion-icon name="person-outline" class="icono"></ion-icon>
         </ion-input>
        
       </div>
       <div class="form-input">
-        <ion-input placeholder="Contraseña">
+        <ion-input  formControlName="password" placeholder="Contraseña">
           <ion-icon name="lock-closed-outline" class="icono"></ion-icon>
         </ion-input>
       </div>
       <p>¿Olvidaste tu contraseña?</p>
-    </div>
+    </form>
     <div class="footer">
       <div class="footer-button">
         <ion-button expand="block"  class="btn-custom-3">INGRESAR</ion-button>

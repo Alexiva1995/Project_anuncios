@@ -51,6 +51,12 @@ border: 9px solid $color-secondary;
 .icono{
  margin-left: 2px;
  color:$color-primary ;
+ &button{
+  margin-right: .5rem;
+  background-color: transparent;
+  opacity: 1;
+  font-size: 1.6rem;
+ }
 }
 
 .icono-custom{
@@ -67,8 +73,7 @@ border: 9px solid $color-secondary;
 .form{
   &-titulo{
     font-weight: 800;
-    margin-top: 1rem;
-    font-size: 18px;
+    font-size: 1.125rem;
     color: $color-primary;
     text-align: center;
   }
