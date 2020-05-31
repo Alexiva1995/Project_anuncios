@@ -17,10 +17,6 @@ const routes: Routes = [
     loadChildren: () => import('./pages/login/login.module').then( m => m.LoginPageModule)
   },
   {
-    path: 'login',
-    loadChildren: () => import('./pages/login/login.module').then( m => m.LoginPageModule)
-  },
-  {
     path: 'profile',
     loadChildren: () => import('./pages/profile/profile.module').then( m => m.ProfilePageModule)
   },
@@ -31,7 +27,16 @@ const routes: Routes = [
   {
     path: 'explore',
     loadChildren: () => import('./pages/explore/explore.module').then( m => m.ExplorePageModule)
+  },
+  {
+    path: 'advertisements',
+    loadChildren: () => import('./pages/advertisements/advertisements.module').then( m => m.AdvertisementsPageModule)
+  },
+  {
+    path: 'offer',
+    loadChildren: () => import('./pages/offer/offer.module').then( m => m.OfferPageModule)
   }
+
 
 ];
 @NgModule({

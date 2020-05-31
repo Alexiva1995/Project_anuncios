@@ -4,6 +4,15 @@
   box-sizing: border-box;
 }
 
+ion-button {
+  margin: 0 auto;
+  display: flex;
+}
+
+.errorInput {
+  border: solid 1px #f34242;
+}
+
 .container {
   height: 100%;
   display: flex;
@@ -48,8 +57,8 @@
 }
 
 .icono {
-  margin-left: 2px;
   color: #003E83;
+  font-size: 22px;
 }
 
 .form-input {
@@ -57,8 +66,12 @@
   margin: 0 auto;
   margin-top: 1.5rem;
   padding: .2rem;
-  border-radius: 14px;
-  box-shadow: 0px 0px 5px 2px rgba(0, 0, 0, 0.12);
+  border-bottom: 1px solid #003E83;
+}
+
+.form-input-icon {
+  display: flex;
+  flex-direction: row-reverse;
 }
 
 .footer {
@@ -102,4 +115,9 @@
 .btn-custom-1 {
   --color: #FFFFFF;
   --border-color: rgba(245, 178, 36, 0.5);
+}
+
+ion-input {
+  --color: #003E83;
+  --padding-bottom: 2px;
 }
