@@ -1,10 +1,13 @@
 <ion-header>
   <ion-toolbar>
+    <ion-icon name="close-outline" class="icono" slot="start"></ion-icon>
     <h1 class="title-header">¿Qué estás ofreciendo?</h1>
   </ion-toolbar>
 </ion-header>
 
 <ion-content>
+  <div class="container">
+
   <p class="title">Categorias</p>
   <div class="category">
       <div class="category-card">
@@ -17,5 +20,26 @@
       </div>
   </div>
 
+  <p class="title-secondary">Información del anuncio</p>
+  <form class="form">
+    <div class="form-input">
+      <ion-label position="stacked" class="form-input-title">Título del anuncio * </ion-label>
+      <ion-input>
+      </ion-input>
+    </div>
+    <div class="form-input">
+      <ion-label position="stacked" class="form-input-title">Descripción del anuncio * </ion-label>
+      <ion-input>
+      </ion-input>
+    </div>
+  </form>
+
+  <div class="footer">
+    <div class="footer-button">
+      <ion-button expand="block" class="btn-custom-3">Siguiente</ion-button>
+    </div>
+  </div>
+
+</div>
 
 </ion-content>
