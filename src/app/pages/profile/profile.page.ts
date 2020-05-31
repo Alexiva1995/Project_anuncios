@@ -55,10 +55,10 @@ export class ProfilePage implements OnInit {
   placeid: any;
   //  public geocoder = new google.maps.Geocoder;
   public zone: NgZone;
-  descripcion
-  latitud = 0
-  longitud = 0
-  userId = 0
+  descripcion;
+  latitud = 0;
+  longitud = 0;
+  userId = 0;
   constructor(
     private fb: FormBuilder,
     private utilities: UtilitiesService,
@@ -73,18 +73,15 @@ export class ProfilePage implements OnInit {
   ) {
     this.form = this.fb.group({
       name: ['', Validators.compose([Validators.required])],
-      password: ['', Validators.compose([Validators.required, Validators.minLength(8)])],
+      password: ['', Validators.compose([Validators.required, Validators.minLength(6)])],
       email: ['', Validators.compose([Validators.required, Validators.pattern(/^([\w-\.]+)@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.)|(([\w-]+\.)+))([a-zA-Z]{2,4}|[0-9]{1,3})(\]?)$/)])],
+      country:['', Validators.compose([Validators.required, Validators.maxLength(4), Validators.minLength(2)])],
       phone: ['', Validators.compose([Validators.required, Validators.maxLength(20), Validators.minLength(11)])],
-      confirm_password: ['', Validators.compose([Validators.required, Validators.minLength(8)])],
-      new_password: ['', Validators.compose([Validators.required, Validators.minLength(8)])],
+      confirm_password: ['', Validators.compose([Validators.required, Validators.minLength(6)])],
+      new_password: ['', Validators.compose([Validators.required, Validators.minLength(6)])],
       photoUrl:['']
     })
 
-    //  this.GoogleAutocomplete = new google.maps.places.AutocompleteService();
-    //  this.autocomplete = { input: '' };
-    //  this.autocompleteItems = [];
-    //  this.zone = Zone;
   }
 
   async ngOnInit() {
@@ -125,10 +122,8 @@ export class ProfilePage implements OnInit {
     this.camera.getPicture(options).then((imageData) => {
       // imageData is either a base64 encoded string or a file URI
       // If it's base64 (DATA_URL):
-      // let base64Image = 'data:image/png;base64,' + imageData;
       this.imgSelected = 'data:image/png;base64,' + imageData;
       this.imgUri = imageData;
-      // this.form.controls['fotoPerfil'].setValue(imageData);
     }, (err) => {
       // Handle error
       console.log("cameraE", err);
@@ -184,20 +179,7 @@ export class ProfilePage implements OnInit {
       });
   }
 
-  selectSearchResult(item) {
 
-    this.descripcion = item
-    this.form.controls["direccion"].setValue(item);
-
-    console.log(item)
-    this.autocompleteItems = [];
-   /*  this.geocoder.geocode({
-      'placeId': item.place_id
-    }, (results, status) => {
-
-
-    }) */
-  }
 
   limpiarDom() {
     this.descripcion = null;
@@ -256,7 +238,7 @@ export class ProfilePage implements OnInit {
   }
   //FORMATO DEL TELEFONO<<<<<<<<<<<<<<<<<<<<<<
   phoneFormat(e: KeyboardEvent) { //evita el ingreso de caracteres no numericos
-    let telefono = this.form.get("phone").value;
+    let telefono = this.form.get("country").value;
     if (telefono.length > 18) {
       while (telefono.length > 18) {
         telefono = telefono.slice(0, -1);
@@ -294,7 +276,7 @@ export class ProfilePage implements OnInit {
         format = format + split[j];
       }
     }
-    this.form.controls["phone"].setValue(format);
+    this.form.controls["country"].setValue(format);
     // this.telefono = format;
   }
 

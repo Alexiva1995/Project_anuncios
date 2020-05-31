@@ -15,6 +15,7 @@ export class LoginPage implements OnInit {
 
   public formGroup: FormGroup;
   public formGroup_: FormGroup;
+  public type: string = 'password';
   constructor(
     private service: AuthService,
     private fb: FormBuilder,
@@ -25,7 +26,7 @@ export class LoginPage implements OnInit {
   ) {
     this.formGroup = this.fb.group({
       email: ['', Validators.compose([Validators.required, Validators.pattern('^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+.[a-zA-Z0-9-.]+$')])],
-      password: ['', Validators.compose([Validators.required, Validators.minLength(8)])],
+      password: ['', Validators.compose([Validators.required, Validators.minLength(6)])],
       remember_me: [true]
     });
   }
@@ -83,7 +84,7 @@ export class LoginPage implements OnInit {
       //this.serviceNotification.getToken();
       //Guardamos el token recibido
       localStorage.setItem(CONSTANTES.LOCAL_STORAGE.token, data.access_token);
-      this.navCtrl.navigateRoot('/home/libros');
+      this.navCtrl.navigateRoot('/tabs/explore');
     },(err)=>{
       //En caso de error
       this.utilities.displayToastButtonTime(err.error.message ? err.error.message : CONSTANTES.MESSAGES.error);

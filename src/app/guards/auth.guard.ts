@@ -17,16 +17,10 @@ canActivate() {
     let token = localStorage.getItem(CONSTANTES.LOCAL_STORAGE.token);
     let onboard = localStorage.getItem(CONSTANTES.LOCAL_STORAGE.tutorial);
     if (token) {
-        return true;
+        this.navCtrl.navigateRoot('/tabs/explore');
     } else {
-        if(onboard){
-            this.navCtrl.navigateRoot('/login');
+        this.navCtrl.navigateRoot('');
             return false;
-        }else{
-            this.navCtrl.navigateRoot('/tutorial');
-            return false;
-        }
-        
     }
 }
 }

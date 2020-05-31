@@ -1,4 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { UtilitiesService } from 'src/app/services/utilities/utilities.service';
+import { AdvertisementsService } from 'src/app/advertisements.service';
+import { CONSTANTES } from 'src/app/services/constantes';
 
 @Component({
   selector: 'app-explore',
@@ -7,9 +10,26 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ExplorePage implements OnInit {
 
-  constructor() { }
+  constructor(
+              private utilities: UtilitiesService,
+              private ads: AdvertisementsService
+  ) { }
 
   ngOnInit() {
+    this.getAds();
+  }
+
+  async getAds(){
+    await this.utilities.displayLoading();
+    await this.ads.getAds().then(async (res) => {
+      let data = res;
+      console.log(res);
+      await this.utilities.dismissLoading();
+    }, (err) => {
+      this.utilities.dismissLoading();
+      this.utilities.displayToastButtonTime(err.error.message ? err.error.message : CONSTANTES.MESSAGES.error);
+      console.log("getError", err);
+    })
   }
 
 }
