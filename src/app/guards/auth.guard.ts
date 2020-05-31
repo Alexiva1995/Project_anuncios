@@ -15,7 +15,7 @@ export class AuthGuard implements CanActivate {
 canActivate() {
     //Validamos que existe un usuario en el localstorage almacenado
     let token = localStorage.getItem(CONSTANTES.LOCAL_STORAGE.token);
-    let onboard = localStorage.getItem(CONSTANTES.LOCAL_STORAGE.tutorial);
+    //let onboard = localStorage.getItem(CONSTANTES.LOCAL_STORAGE.tutorial);
     if (token) {
         this.navCtrl.navigateRoot('/tabs/explore');
     } else {

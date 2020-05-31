@@ -9,6 +9,7 @@ import { CONSTANTES } from 'src/app/services/constantes';
   styleUrls: ['./explore.page.scss'],
 })
 export class ExplorePage implements OnInit {
+  advertisements: Object = [];
 
   constructor(
               private utilities: UtilitiesService,
@@ -19,11 +20,13 @@ export class ExplorePage implements OnInit {
     this.getAds();
   }
 
+
+  //Metodo para listar todos los anuncios
   async getAds(){
     await this.utilities.displayLoading();
     await this.ads.getAds().then(async (res) => {
       let data = res;
-      console.log(res);
+     this.advertisements = res;
       await this.utilities.dismissLoading();
     }, (err) => {
       this.utilities.dismissLoading();

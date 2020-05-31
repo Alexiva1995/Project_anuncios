@@ -24,4 +24,16 @@ export class AdvertisementsService {
       });
     })
   }
+
+  public getMyAds() {
+    return new Promise((resolve, reject) => {
+      const seq = this.api.post('api/auth/ads/my-ads', null, true);
+      seq.subscribe((res: any) => {
+        resolve(res);
+        console.log(res);
+      }, err => {
+        reject(err);
+      });
+    })
+  }
 }
