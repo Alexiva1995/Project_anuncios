@@ -19,44 +19,51 @@
     <form class="form" [formGroup]="form">
       
       <div class="form-input">
-        <ion-input formControlName="name" placeholder="Nombre del usuario" readonly>
-          <ion-icon name="person-outline" class="icono"></ion-icon>
-       
+        <ion-label position="stacked" class="form-input-title">Nombre del usuario * </ion-label>
+        <ion-input formControlName="name"readonly>
+          <!-- <ion-icon name="person-outline" class="icono"></ion-icon> -->
         </ion-input>
       </div>
 
-      <div class="form-input">
+      <!-- <div class="form-input">
         <ion-input formControlName="email" placeholder="Correo electrónico" readonly>
           <ion-icon name="person-outline" class="icono"></ion-icon>
-       
         </ion-input>
-      </div>
+      </div> -->
 
-      <div class="form-input">
-        <ion-input formControlName="phone" placeholder="Teléfono" type="tel" (keypress)="phoneFormat($event)">
-          <ion-icon name="call-outline" class="icono"></ion-icon>
-          <ion-icon name="person-outline" class="icono edit"></ion-icon>
-        </ion-input>
+      <div class="form-input-group">
+        <ion-label position="stacked" class="form-input-title">País</ion-label>
+        <div class="form-input-group-items">
+          <ion-input class="item1" formControlName="phone" placeholder="+57" type="tel" (keypress)="phoneFormat($event)">
+            <!-- <ion-icon name="call-outline" class="icono"></ion-icon>
+            <ion-icon name="person-outline" class="icono edit"></ion-icon> -->
+          </ion-input>
+          <ion-input  class="item2" placeholder="Número de telefono" type="tel">
+          </ion-input>
+        </div>
       </div>
 
       <div class="form-input" [ngClass]="{'errorInput': errorControl.password.errors?.minlength}">
-        <ion-input formControlName="password" placeholder="Contraseña actual">
-          <ion-icon name="lock-closed-outline" class="icono"></ion-icon>
-          <ion-icon name="person-outline" class="icono edit"></ion-icon>
+        <ion-input class="form-input-icon" formControlName="password" placeholder="Contraseña actual *">
+          <ion-icon name="eye" class="icono"></ion-icon>
+          <!-- <ion-icon name="lock-closed-outline" class="icono"></ion-icon>
+          <ion-icon name="person-outline" class="icono edit"></ion-icon> -->
         </ion-input>
       </div>
 
       <div class="form-input" [ngClass]="{'errorInput': errorControl.new_password.errors?.minlength}">
-        <ion-input formControlName="new_password" placeholder="Contraseña nueva">
-          <ion-icon name="lock-closed-outline" class="icono"></ion-icon>
-          <ion-icon name="person-outline" class="icono edit"></ion-icon>
+        <ion-input class="form-input-icon" formControlName="new_password" placeholder="Contraseña nueva *">
+          <ion-icon name="eye" class="icono"></ion-icon>
+          <!-- <ion-icon name="lock-closed-outline" class="icono"></ion-icon>
+          <ion-icon name="person-outline" class="icono edit"></ion-icon> -->
         </ion-input>
       </div>
 
       <div class="form-input" [ngClass]="{'errorInput': errorControl.confirm_password.value != errorControl.new_password.value && !errorControl.confirm_password.pristine}">
-        <ion-input formControlName="confirm_password" placeholder="Repetir Contraseña" >
-          <ion-icon name="lock-closed-outline" class="icono"></ion-icon>
-          <ion-icon name="person-outline" class="icono edit"></ion-icon>
+        <ion-input class="form-input-icon" formControlName="confirm_password" placeholder="Repetir Contraseña *" >
+          <ion-icon name="eye" class="icono"></ion-icon>
+          <!-- <ion-icon name="lock-closed-outline" class="icono"></ion-icon>
+          <ion-icon name="person-outline" class="icono edit"></ion-icon> -->
         </ion-input>
       </div>
 
