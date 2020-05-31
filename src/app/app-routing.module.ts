@@ -38,6 +38,10 @@ const routes: Routes = [
   {
     path: 'uploadphoto',
     loadChildren: () => import('./pages/uploadphoto/uploadphoto.module').then( m => m.UploadphotoPageModule)
+  },
+  {
+    path: 'congratulations',
+    loadChildren: () => import('./pages/congratulations/congratulations.module').then( m => m.CongratulationsPageModule)
   }
 
 
