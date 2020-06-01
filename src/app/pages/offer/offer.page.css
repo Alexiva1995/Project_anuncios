@@ -102,6 +102,10 @@ ion-toolbar {
   margin-bottom: 2rem;
 }
 
+.cambiarOpacidad {
+  opacity: 0.5;
+}
+
 .btn-custom-3 {
   --color: #FFFFFF;
   --background: #F5B224;
