@@ -17,7 +17,7 @@ export class AdvertisementsService {
    * **/
   public getAds() {
     return new Promise((resolve, reject) => {
-      const seq = this.api.get('api/auth/user', null, true);
+      const seq = this.api.get('/api/auth/ads', null, true);
       seq.subscribe((res: any) => {
         resolve(res);
         console.log(res);

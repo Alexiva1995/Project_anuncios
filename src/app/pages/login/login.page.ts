@@ -51,6 +51,7 @@ export class LoginPage implements OnInit {
         this.service.signIn(data).then((res: any) => {
           //Almacenamos en local storage el nombre del usuario
           console.log(res)
+          //Guardamos el token recibido
           localStorage.setItem(CONSTANTES.LOCAL_STORAGE.token, res.access_token);
           this.utilities.dismissLoading();
           this.getUser();
@@ -82,10 +83,7 @@ export class LoginPage implements OnInit {
   async getUser(){
     // Iniciamos la consulta
     await this.auth.getUser().then(async (res)=>{
-      let data = JSON.parse(JSON.stringify(res));
-      //this.serviceNotification.getToken();
-      //Guardamos el token recibido
-      localStorage.setItem(CONSTANTES.LOCAL_STORAGE.token, data.access_token);
+      let data = res;
       //Activamos las notificaciones push para un usuario especifico
       this.notification.handlerNotifications();
       this.navCtrl.navigateRoot('/tabs');
