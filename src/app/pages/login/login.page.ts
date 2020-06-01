@@ -86,7 +86,7 @@ export class LoginPage implements OnInit {
       let data = res;
       //Activamos las notificaciones push para un usuario especifico
       this.notification.handlerNotifications();
-      this.navCtrl.navigateRoot('/tabs');
+      this.navCtrl.navigateRoot('/tabs/explore');
     },(err)=>{
       //En caso de error
       this.utilities.displayToastButtonTime(err.error.message ? err.error.message : CONSTANTES.MESSAGES.error);

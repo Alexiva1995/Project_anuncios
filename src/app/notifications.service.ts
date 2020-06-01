@@ -5,6 +5,7 @@ import { CONSTANTES } from './services/constantes';
   providedIn: 'root'
 })
 export class NotificationsService {
+  userId: string;
 
   constructor(private oneSignal: OneSignal) { }
 
@@ -24,6 +25,13 @@ export class NotificationsService {
       alert.present();
       console.log('notificationOpenedCallback: ' + JSON.stringify(jsonData)); */
     });
+    this.oneSignal.endInit();
+    this.oneSignal.getIds().then(onesignal=>{
+      this.userId = onesignal.userId
+    }).catch(error=>{
+      console.log(error)
+    })
+    
     this.oneSignal.endInit();
   }
 
