@@ -1011,6 +1011,13 @@
   dependencies:
     "@types/cordova" latest
 
+"@ionic-native/onesignal@^5.26.0":
+  version "5.26.0"
+  resolved "https://registry.npm.taobao.org/@ionic-native/onesignal/download/@ionic-native/onesignal-5.26.0.tgz#7f8774671932160ca9d2437b6e32e1c9a0ae489c"
+  integrity sha1-f4d0ZxkyFgyp0kN7bjLhyaCuSJw=
+  dependencies:
+    "@types/cordova" latest
+
 "@ionic-native/splash-screen@^5.0.0":
   version "5.26.0"
   resolved "https://registry.npm.taobao.org/@ionic-native/splash-screen/download/@ionic-native/splash-screen-5.26.0.tgz#4dde62ae9067f5b4862bf3fa6f6b0bafbbad850b"
@@ -5979,6 +5986,11 @@ once@^1.3.0, once@^1.3.1, once@^1.4.0:
   integrity sha1-WDsap3WWHUsROsF9nFC6753Xa9E=
   dependencies:
     wrappy "1"
+
+onesignal-cordova-plugin@^2.9.1:
+  version "2.9.1"
+  resolved "https://registry.npm.taobao.org/onesignal-cordova-plugin/download/onesignal-cordova-plugin-2.9.1.tgz#72e68ec1395bd93a5ac4c183120914ce934b55b6"
+  integrity sha1-cuaOwTlb2TpaxMGDEgkUzpNLVbY=
 
 onetime@^5.1.0:
   version "5.1.0"
