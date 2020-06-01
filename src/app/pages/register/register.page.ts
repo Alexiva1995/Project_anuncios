@@ -14,6 +14,7 @@ import { CONSTANTES } from 'src/app/services/constantes';
 export class RegisterPage implements OnInit {
 
   public formGroup: FormGroup;
+  public type: string = 'password';
   constructor(   private service: AuthService,
     private fb: FormBuilder,
     private utilities: UtilitiesService,
@@ -22,8 +23,8 @@ export class RegisterPage implements OnInit {
     this.formGroup = this.fb.group({
       name: ['', Validators.required],
       email: ['', Validators.compose([Validators.required, Validators.pattern('^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+.[a-zA-Z0-9-.]+$')])],
-      password: ['', Validators.compose([Validators.required, Validators.minLength(8)])],
-      confirm_password: ['', Validators.compose([Validators.required, Validators.minLength(8)])]
+      password: ['', Validators.compose([Validators.required, Validators.minLength(6)])],
+      confirm_password: ['', Validators.compose([Validators.required, Validators.minLength(6)])]
     });
   }
 

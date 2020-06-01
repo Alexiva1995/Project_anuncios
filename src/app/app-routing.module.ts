@@ -27,7 +27,8 @@ const routes: Routes = [
   {
     path: 'explore',
     loadChildren: () => import('./pages/explore/explore.module').then( m => m.ExplorePageModule)
-  },  {
+  },
+  {
     path: 'advertisements',
     loadChildren: () => import('./pages/advertisements/advertisements.module').then( m => m.AdvertisementsPageModule)
   },
