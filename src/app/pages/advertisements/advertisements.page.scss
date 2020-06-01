@@ -60,6 +60,27 @@ ion-toolbar {
         display:flex;
         justify-content:center;
         width:100%;
+        position: relative;
+        &-status{
+            background-color: $color-success;
+            position: absolute;
+            padding-left: .2rem;
+            padding-right: .2rem;
+            top:1rem;
+            left: 1rem;
+            opacity: .9;
+            color: $color-base;
+        }
+        &-status2{
+            background-color: $color-cancel;
+            position: absolute;
+            padding-left: .2rem;
+            padding-right: .2rem;
+            top:1rem;
+            left: 1rem;
+            opacity: .9;
+            color: $color-base;
+        }
     }
     &-subtitle{
         color:$color-secondary;
