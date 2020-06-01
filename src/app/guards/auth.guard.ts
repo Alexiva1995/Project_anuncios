@@ -19,8 +19,7 @@ canActivate() {
     if (token) {
         this.navCtrl.navigateRoot('/tabs/explore');
     } else {
-        this.navCtrl.navigateRoot('');
-            return false;
+            return true;
     }
 }
 }
