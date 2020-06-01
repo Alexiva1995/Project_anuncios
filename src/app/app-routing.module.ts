@@ -42,6 +42,10 @@ const routes: Routes = [
   {
     path: 'congratulations',
     loadChildren: () => import('./pages/congratulations/congratulations.module').then( m => m.CongratulationsPageModule)
+  },
+  {
+    path: 'seeadvertisements',
+    loadChildren: () => import('./pages/seeadvertisements/seeadvertisements.module').then( m => m.SeeadvertisementsPageModule)
   }
 
 
