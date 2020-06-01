@@ -211,8 +211,9 @@ export class ProfilePage implements OnInit {
         }
       }, {
         text: 'Si',
-        handler: () => {
-          // this.auth.logout();
+        handler: async () => {
+          await this.auth.logOut();
+          this.navCtrl.navigateRoot('/login')
         }
       }]
     });
