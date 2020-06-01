@@ -5,6 +5,7 @@ import { UtilitiesService } from 'src/app/services/utilities/utilities.service';
 import { CONSTANTES } from 'src/app/services/constantes';
 import { Router } from '@angular/router';
 import { AuthService } from 'src/app/services/auth/auth.service';
+import { NotificationsService } from 'src/app/notifications.service';
 
 @Component({
   selector: 'app-login',
@@ -23,6 +24,7 @@ export class LoginPage implements OnInit {
     private navCtrl: NavController,
     private router: Router,
     public auth: AuthService,
+    private notification: NotificationsService
   ) {
     this.formGroup = this.fb.group({
       email: ['', Validators.compose([Validators.required, Validators.pattern('^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+.[a-zA-Z0-9-.]+$')])],
@@ -84,7 +86,9 @@ export class LoginPage implements OnInit {
       //this.serviceNotification.getToken();
       //Guardamos el token recibido
       localStorage.setItem(CONSTANTES.LOCAL_STORAGE.token, data.access_token);
-      this.navCtrl.navigateRoot('/tabs/explore');
+      //Activamos las notificaciones push para un usuario especifico
+      this.notification.handlerNotifications();
+      this.navCtrl.navigateRoot('/tabs');
     },(err)=>{
       //En caso de error
       this.utilities.displayToastButtonTime(err.error.message ? err.error.message : CONSTANTES.MESSAGES.error);
