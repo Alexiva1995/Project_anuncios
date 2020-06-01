@@ -102,7 +102,7 @@ ion-toolbar {
   margin-bottom: 2rem;
 }
 
-.cambiarOpacidad {
+.opacidad:active {
   opacity: 0.5;
 }
 
