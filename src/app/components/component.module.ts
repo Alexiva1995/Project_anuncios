@@ -4,6 +4,8 @@ import { IonicModule } from '@ionic/angular';
 import { HttpClientModule } from '@angular/common/http';
 import { ReactiveFormsModule } from '@angular/forms';
 import { UtilitiesService } from '../services/utilities/utilities.service';
+import {PopinfoPage} from './popinfo/popinfo.page'
+
 
 
 /**
@@ -21,11 +23,13 @@ import { UtilitiesService } from '../services/utilities/utilities.service';
     ],
 
     declarations: [
+        PopinfoPage,
     ],
 
     exports: [
         HttpClientModule,
         ReactiveFormsModule,
+        PopinfoPage,
     ],
 
     entryComponents: [

@@ -47,7 +47,11 @@ const routes: Routes = [
   {
     path: 'seeadvertisements',
     loadChildren: () => import('./pages/seeadvertisements/seeadvertisements.module').then( m => m.SeeadvertisementsPageModule)
+  },  {
+    path: 'popinfo',
+    loadChildren: () => import('./components/popinfo/popinfo.module').then( m => m.PopinfoPageModule)
   }
+
 
 
 ];
