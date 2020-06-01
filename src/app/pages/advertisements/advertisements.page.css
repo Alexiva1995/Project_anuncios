@@ -53,6 +53,29 @@ ion-toolbar {
   display: flex;
   justify-content: center;
   width: 100%;
+  position: relative;
+}
+
+.card-background-status {
+  background-color: #2AD200;
+  position: absolute;
+  padding-left: .2rem;
+  padding-right: .2rem;
+  top: 1rem;
+  left: 1rem;
+  opacity: .9;
+  color: #FFFFFF;
+}
+
+.card-background-status2 {
+  background-color: #939393;
+  position: absolute;
+  padding-left: .2rem;
+  padding-right: .2rem;
+  top: 1rem;
+  left: 1rem;
+  opacity: .9;
+  color: #FFFFFF;
 }
 
 .card-subtitle {
