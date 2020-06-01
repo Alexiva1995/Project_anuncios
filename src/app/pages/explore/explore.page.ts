@@ -26,7 +26,7 @@ export class ExplorePage implements OnInit {
     await this.utilities.displayLoading();
     await this.ads.getAds().then(async (res) => {
       let data = res;
-     this.advertisements = res;
+     this.advertisements = res['todos los anuncios'];
       await this.utilities.dismissLoading();
     }, (err) => {
       this.utilities.dismissLoading();

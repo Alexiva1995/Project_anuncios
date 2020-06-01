@@ -8,7 +8,7 @@ const routes: Routes = [
     component: TabsPage,
     children: [
       {
-        path: '',
+        path: 'explore',
         loadChildren: () => import('../pages/explore/explore.module').then( m => m.ExplorePageModule)
       },
       {
@@ -21,14 +21,14 @@ const routes: Routes = [
       },
       {
         path: '',
-        redirectTo: '/explore',
+        redirectTo: 'tabs/explore',
         pathMatch: 'full'
       }
     ]
   },
   {
     path: '',
-    redirectTo: '/explore',
+    redirectTo: 'tabs/explore',
     pathMatch: 'full'
   }
 ];

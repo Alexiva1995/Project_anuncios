@@ -51,7 +51,11 @@ const routes: Routes = [
   {
     path: 'popinfo',
     loadChildren: () => import('./components/popinfo/popinfo.module').then( m => m.PopinfoPageModule)
-  }
+  },
+  {
+    path: 'tabs',
+ loadChildren: () => import('./tabs/tabs.module').then( m => m.TabsPageModule)
+   },
 
 
 
