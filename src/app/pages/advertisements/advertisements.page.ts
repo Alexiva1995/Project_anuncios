@@ -64,4 +64,5 @@ export class AdvertisementsPage implements OnInit {
   }
 
 
+
 }
