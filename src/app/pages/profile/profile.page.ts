@@ -212,7 +212,7 @@ export class ProfilePage implements OnInit {
       }, {
         text: 'Si',
         handler: () => {
-          //this.auth.logout();
+          this.auth.logOut();
         }
       }]
     });
