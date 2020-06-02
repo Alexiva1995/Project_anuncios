@@ -26,4 +26,8 @@ export class OfferPage implements OnInit {
     this.ruta.navigateForward([`/uploadphoto/${JSON.stringify(this.formGroup.value)}`])
   }
 
+  salir(){
+    this.ruta.back()
+  }
+
 }
