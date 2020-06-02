@@ -41,7 +41,8 @@ export class LoginPage implements OnInit {
   async signIn() {
     await this.utilities.displayLoading();
     //this.notification.refreshToken();
-    this.formGroup.controls.token_fcm.setValue(localStorage.getItem(CONSTANTES.LOCAL_STORAGE.FCM));
+    let token = localStorage.getItem(CONSTANTES.LOCAL_STORAGE.FCM);
+    this.formGroup.controls.token_fcm.setValue(token);
     let data = this.formGroup.value;
 
     //Validamos el formulario
