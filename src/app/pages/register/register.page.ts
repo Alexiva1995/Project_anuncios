@@ -4,7 +4,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { UtilitiesService } from 'src/app/services/utilities/utilities.service';
 import { NavController } from '@ionic/angular';
 import { CONSTANTES } from 'src/app/services/constantes';
-import { NotificationsService } from 'src/app/notifications.service';
+//import { NotificationsService } from 'src/app/notifications.service';
 
 @Component({
   selector: 'app-register',
@@ -20,7 +20,8 @@ export class RegisterPage implements OnInit {
     private utilities: UtilitiesService,
     private navCtrl: NavController,
     public auth: AuthService,
-    private notification: NotificationsService) {
+    //private notification: NotificationsService
+    ) {
     this.formGroup = this.fb.group({
       name: ['', Validators.required],
       email: ['', Validators.compose([Validators.required, Validators.pattern('^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+.[a-zA-Z0-9-.]+$')])],
@@ -39,7 +40,7 @@ export class RegisterPage implements OnInit {
     console.log(this.formGroup);
     
     await this.utilities.displayLoading();
-    this.notification.refreshToken();
+    //this.notification.refreshToken();
     this.formGroup.controls.token_fcm.setValue(localStorage.getItem(CONSTANTES.LOCAL_STORAGE.FCM));
     let data = this.formGroup.value;
     try {

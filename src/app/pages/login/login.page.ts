@@ -24,7 +24,7 @@ export class LoginPage implements OnInit {
     private navCtrl: NavController,
     private router: Router,
     public auth: AuthService,
-    private notification: NotificationsService
+   // private notification: NotificationsService
   ) {
     this.formGroup = this.fb.group({
       email: ['', Validators.compose([Validators.required, Validators.pattern('^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+.[a-zA-Z0-9-.]+$')])],
@@ -40,7 +40,7 @@ export class LoginPage implements OnInit {
 
   async signIn() {
     await this.utilities.displayLoading();
-    this.notification.refreshToken();
+    //this.notification.refreshToken();
     this.formGroup.controls.token_fcm.setValue(localStorage.getItem(CONSTANTES.LOCAL_STORAGE.FCM));
     let data = this.formGroup.value;
 
@@ -56,7 +56,7 @@ export class LoginPage implements OnInit {
           console.log(res)
           //Guardamos el token recibido
           localStorage.setItem(CONSTANTES.LOCAL_STORAGE.token, res.access_token);
-          this.notification.handlerNotifications();
+          //this.notification.handlerNotifications();
           this.utilities.dismissLoading();
           this.getUser();
         }, e => {
@@ -89,7 +89,7 @@ export class LoginPage implements OnInit {
     await this.auth.getUser().then(async (res)=>{
       let data = res;
       //Activamos las notificaciones push para un usuario especifico
-      this.notification.handlerNotifications();
+      //this.notification.handlerNotifications();
       this.navCtrl.navigateRoot('/tabs/explore');
     },(err)=>{
       //En caso de error
