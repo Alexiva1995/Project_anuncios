@@ -80,15 +80,15 @@ export class AdvertisementsService {
     })
   }
 
-  public createAds(title, content, file, city, category) {
+  public createAds(usuario,file,city) {
     return new Promise((resolve, reject) => {
 
       const data = {
-        title: title,
-        content: content,
+        title: usuario.titulo,
+        content: usuario.descripcion,
         file: file,
         origin_city: city,
-        categories: category
+        categories: usuario.categoria
       }
 
       const seq = this.api.post('api/auth/ads/store', data, true);
@@ -104,6 +104,18 @@ export class AdvertisementsService {
   public uploadPhoto(data) {
     return new Promise((resolve, reject) => {
       let observer:Observable<any> = this.api.post('api/auth/user', data, true);
+      observer.subscribe((res: any) => {
+        resolve(res);
+        console.log(res);
+      }, err => {
+        reject(err);
+      });
+    })
+  }
+
+  public categorys() {
+    return new Promise((resolve, reject) => {
+      let observer:Observable<any> = this.api.post('api/auth/categories', null , true);
       observer.subscribe((res: any) => {
         resolve(res);
         console.log(res);

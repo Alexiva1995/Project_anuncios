@@ -14,6 +14,7 @@ import { ActivatedRoute } from '@angular/router';
 export class UploadphotoPage implements OnInit {
   imgSelected: string;
   dataRecibida:string;
+  ubicacion:string
   constructor(private camera: Camera, private alertCtrl: AlertController, 
               private ads: AdvertisementsService, private utilities: UtilitiesService,
               private capturar:ActivatedRoute,private ruta: NavController) { }
@@ -99,8 +100,14 @@ export class UploadphotoPage implements OnInit {
     
   }
 
-  finalizar(){
-    this.ruta.navigateForward(['/congratulations'])
+  async finalizar(){
+      // Metodo para finalizar
+     const valor = await this.ads.createAds(this.dataRecibida,this.imgSelected,this.ubicacion)
+       if(valor){
+         this.ruta.navigateForward(['/congratulations'])
+       }else{
+         console.log("error")
+       }
   }
 
 }
