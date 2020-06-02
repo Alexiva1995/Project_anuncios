@@ -12,8 +12,17 @@ export class NotificationsService {
 
   
   public handlerNotifications(){
-    this.fcm.getToken().then(token => {
+    this.fcm.getToken().then(async token => {
       //backend.registerToken(token
+      const alert = await this.alertController.create({
+        cssClass: 'my-custom-class',
+        header: 'token',
+        subHeader: ':',
+        message: token,
+        buttons: ['OK']
+      });
+  
+      await alert.present();
     
     });
     
@@ -39,5 +48,8 @@ export class NotificationsService {
     });
   }
 
+  getToken(){
+    return this.fcm.getToken();
+  }
 
 }

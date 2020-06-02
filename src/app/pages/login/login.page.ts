@@ -29,7 +29,8 @@ export class LoginPage implements OnInit {
     this.formGroup = this.fb.group({
       email: ['', Validators.compose([Validators.required, Validators.pattern('^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+.[a-zA-Z0-9-.]+$')])],
       password: ['', Validators.compose([Validators.required, Validators.minLength(6)])],
-      remember_me: [true]
+      remember_me: [true],
+      token_fcm:[''],
     });
   }
 
@@ -39,6 +40,9 @@ export class LoginPage implements OnInit {
 
   async signIn() {
     await this.utilities.displayLoading();
+    this.notification.getToken().then((token) => {
+      this.formGroup.controls.token_fcm.setValue(token);
+    })
     let data = this.formGroup.value;
 
     //Validamos el formulario

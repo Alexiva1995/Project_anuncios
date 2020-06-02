@@ -5,6 +5,7 @@ import { UtilitiesService } from 'src/app/services/utilities/utilities.service';
 import { NavController } from '@ionic/angular';
 import { Router } from '@angular/router';
 import { CONSTANTES } from 'src/app/services/constantes';
+import { NotificationsService } from 'src/app/notifications.service';
 
 @Component({
   selector: 'app-register',
@@ -19,7 +20,8 @@ export class RegisterPage implements OnInit {
     private fb: FormBuilder,
     private utilities: UtilitiesService,
     private navCtrl: NavController,
-    public auth: AuthService) {
+    public auth: AuthService,
+    private notification: NotificationsService) {
     this.formGroup = this.fb.group({
       name: ['', Validators.required],
       email: ['', Validators.compose([Validators.required, Validators.pattern('^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+.[a-zA-Z0-9-.]+$')])],
@@ -37,6 +39,9 @@ export class RegisterPage implements OnInit {
     console.log(this.formGroup);
     
     await this.utilities.displayLoading();
+    this.notification.getToken().then((token) => {
+      this.formGroup.controls.token_fcm.setValue(token);
+    })
     let data = this.formGroup.value;
     try {
       // Iniciamos la consulta
