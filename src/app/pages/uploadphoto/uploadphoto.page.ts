@@ -1,7 +1,7 @@
 import { Component, OnInit, NgZone } from '@angular/core';
 import { Camera, CameraOptions } from '@ionic-native/camera/ngx';
 import { AlertController, NavController } from '@ionic/angular';
-import { AdvertisementsService } from 'src/app/advertisements.service';
+import { AdvertisementsService } from 'src/app/services/advertisements/advertisements.service';
 import { UtilitiesService } from 'src/app/services/utilities/utilities.service';
 import { CONSTANTES } from 'src/app/services/constantes';
 import { ActivatedRoute } from '@angular/router';
@@ -144,7 +144,7 @@ export class UploadphotoPage implements OnInit {
       return
     }else{
       // Metodo para finalizar
-      const valor = await this.ads.createAds(JSON.parse(this.dataRecibida), this.imgSelected , this.userCity || 'Cali colombia')
+      const valor = await this.ads.createAds(JSON.parse(this.dataRecibida), this.imgSelected , this.userCity || 'Bogotá - Colombia')
       if(valor){
         this.ruta.navigateForward(['/congratulations'])
       }else{

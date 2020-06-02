@@ -3,7 +3,7 @@ import {
 } from '@angular/core';
 import {
   ApiService
-} from './services/api/api.service';
+} from '../api/api.service';
 import { Observable } from 'rxjs/internal/Observable';
 
 

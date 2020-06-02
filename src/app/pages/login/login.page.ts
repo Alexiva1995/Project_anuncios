@@ -5,7 +5,7 @@ import { UtilitiesService } from 'src/app/services/utilities/utilities.service';
 import { CONSTANTES } from 'src/app/services/constantes';
 import { Router } from '@angular/router';
 import { AuthService } from 'src/app/services/auth/auth.service';
-import { NotificationsService } from 'src/app/notifications.service';
+import { NotificationsService } from 'src/app/services/notifications/notifications.service';
 
 @Component({
   selector: 'app-login',

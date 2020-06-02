@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { FCM } from '@ionic-native/fcm/ngx'
 import { AlertController } from '@ionic/angular';
-import { CONSTANTES } from './services/constantes';
+import { CONSTANTES } from '../constantes';
 @Injectable({
   providedIn: 'root'
 })

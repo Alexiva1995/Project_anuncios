@@ -1,9 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { UtilitiesService } from 'src/app/services/utilities/utilities.service';
-import { AdvertisementsService } from 'src/app/advertisements.service';
+import { AdvertisementsService } from 'src/app/services/advertisements/advertisements.service';
 import { CONSTANTES } from 'src/app/services/constantes';
 import { NavController } from '@ionic/angular';
 import { NavigationExtras } from '@angular/router';
+import { SharingService } from 'src/app/services/sharing/sharing.service';
 
 @Component({
   selector: 'app-explore',
@@ -16,7 +17,8 @@ export class ExplorePage implements OnInit {
   constructor(
               private utilities: UtilitiesService,
               private ads: AdvertisementsService,
-              private navCtrl: NavController
+              private navCtrl: NavController,
+              private sharing: SharingService
   ) { }
 
   ngOnInit() {
@@ -49,6 +51,10 @@ export class ExplorePage implements OnInit {
     }else{
       this.navCtrl.navigateForward(url);
     }
+  }
+
+  share(data){
+    this.sharing.sharing();
   }
 
 }

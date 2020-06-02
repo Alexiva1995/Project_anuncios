@@ -262,7 +262,8 @@ export class ProfilePage implements OnInit {
       }, {
         text: 'Yes',
         handler: () => {
-          //this.auth.delete(this.userId);
+          this.auth.delete();
+          this.signOut();
         }
       }]
     });
