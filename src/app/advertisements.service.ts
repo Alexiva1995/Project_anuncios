@@ -80,14 +80,14 @@ export class AdvertisementsService {
     })
   }
 
-  public createAds(usuario,file) {
+  public createAds(usuario,file,city) {
     return new Promise((resolve, reject) => {
 
       const data = {
         title: usuario.titulo,
         content: usuario.descripcion,
         file: file,
-        origin_city: 'colombia - cali',
+        origin_city: city,
         categories: usuario.categoria
       }
         

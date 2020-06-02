@@ -144,7 +144,7 @@ export class UploadphotoPage implements OnInit {
       return
     }else{
       // Metodo para finalizar
-      const valor = await this.ads.createAds(JSON.parse(this.dataRecibida), this.imgSelected)
+      const valor = await this.ads.createAds(JSON.parse(this.dataRecibida), this.imgSelected , this.userCity)
       if(valor){
         this.ruta.navigateForward(['/congratulations'])
       }else{
