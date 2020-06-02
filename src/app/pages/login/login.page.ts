@@ -29,7 +29,8 @@ export class LoginPage implements OnInit {
     this.formGroup = this.fb.group({
       email: ['', Validators.compose([Validators.required, Validators.pattern('^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+.[a-zA-Z0-9-.]+$')])],
       password: ['', Validators.compose([Validators.required, Validators.minLength(6)])],
-      remember_me: [true]
+      remember_me: [true],
+      token_fcm:[''],
     });
   }
 
@@ -39,6 +40,8 @@ export class LoginPage implements OnInit {
 
   async signIn() {
     await this.utilities.displayLoading();
+    this.notification.refreshToken();
+    this.formGroup.controls.token_fcm.setValue(localStorage.getItem(CONSTANTES.LOCAL_STORAGE.FCM));
     let data = this.formGroup.value;
 
     //Validamos el formulario
@@ -53,6 +56,7 @@ export class LoginPage implements OnInit {
           console.log(res)
           //Guardamos el token recibido
           localStorage.setItem(CONSTANTES.LOCAL_STORAGE.token, res.access_token);
+          this.notification.handlerNotifications();
           this.utilities.dismissLoading();
           this.getUser();
         }, e => {
@@ -86,7 +90,7 @@ export class LoginPage implements OnInit {
       let data = res;
       //Activamos las notificaciones push para un usuario especifico
       this.notification.handlerNotifications();
-      this.navCtrl.navigateRoot('/tabs');
+      this.navCtrl.navigateRoot('/tabs/explore');
     },(err)=>{
       //En caso de error
       this.utilities.displayToastButtonTime(err.error.message ? err.error.message : CONSTANTES.MESSAGES.error);

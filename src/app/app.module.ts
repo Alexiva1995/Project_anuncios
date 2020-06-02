@@ -12,7 +12,7 @@ import { Camera } from '@ionic-native/camera/ngx';
 import { HttpClientModule } from '@angular/common/http';
 import { Geolocation } from '@ionic-native/geolocation/ngx';
 import { WebView } from '@ionic-native/ionic-webview/ngx';
-import { OneSignal } from '@ionic-native/onesignal/ngx';
+import { FCM } from '@ionic-native/fcm/ngx';
 
 @NgModule({
   declarations: [AppComponent],
@@ -25,7 +25,7 @@ import { OneSignal } from '@ionic-native/onesignal/ngx';
     WebView,
     Camera,
     Geolocation,
-    OneSignal
+    FCM
   ],
   bootstrap: [AppComponent]
 })

@@ -1,33 +1,73 @@
 import { Injectable } from '@angular/core';
-import { OneSignal } from '@ionic-native/onesignal/ngx';
+import { FCM } from '@ionic-native/fcm/ngx'
+import { AlertController } from '@ionic/angular';
 import { CONSTANTES } from './services/constantes';
 @Injectable({
   providedIn: 'root'
 })
 export class NotificationsService {
+  userId: string;
 
-  constructor(private oneSignal: OneSignal) { }
+  constructor(private fcm: FCM, private alertController: AlertController) { }
 
+
+  
   public handlerNotifications(){
-    this.oneSignal.startInit('c1f688f2-217d-4a8f-b019-127cbfc8014c', '245562045849');
-    this.oneSignal.inFocusDisplaying(this.oneSignal.OSInFocusDisplayOption.Notification);
-    this.oneSignal.inFocusDisplaying(this.oneSignal.OSInFocusDisplayOption.InAppAlert);
-    this.oneSignal.setSubscription(true);
-    this.oneSignal.sendTag("token", localStorage.getItem(CONSTANTES.LOCAL_STORAGE.token));//token
-    this.oneSignal.handleNotificationOpened()
-    .subscribe(jsonData => {
-  /*     let alert = this.alertCtrl.create({
-        title: jsonData.notification.payload.title,
-        subTitle: jsonData.notification.payload.body,
+    this.fcm.getToken().then(async token => {
+      //backend.registerToken(token
+      const alert = await this.alertController.create({
+        cssClass: 'my-custom-class',
+        header: 'token',
+        subHeader: ':',
+        message: token,
         buttons: ['OK']
       });
-      alert.present();
-      console.log('notificationOpenedCallback: ' + JSON.stringify(jsonData)); */
+  
+      await alert.present();
+    
     });
-    this.oneSignal.endInit();
+    
+    this.fcm.onNotification().subscribe(data => {
+      if(data.wasTapped){
+        console.log("Received in background");
+      } else {
+        console.log("Received in foreground");
+      };
+    });
+    
+    this.fcm.onTokenRefresh().subscribe(async token => {
+      //backend.registerToken(token);
+      const alert = await this.alertController.create({
+        cssClass: 'my-custom-class',
+        header: 'token',
+        subHeader: ':',
+        message: token,
+        buttons: ['OK']
+      });
+  
+      await alert.present();
+    });
   }
 
-  private disabled(){
-    this.oneSignal.setSubscription(false);
+  setToken(){
+    this.fcm.getToken().then((token) => {
+      localStorage.setItem(CONSTANTES.LOCAL_STORAGE.FCM, token);
+    })
   }
+
+  refreshToken(){
+    this.fcm.onTokenRefresh().subscribe(async token => {
+      localStorage.setItem(CONSTANTES.LOCAL_STORAGE.FCM, token);
+      const alert = await this.alertController.create({
+        cssClass: 'my-custom-class',
+        header: 'token',
+        subHeader: ':',
+        message: token,
+        buttons: ['OK']
+      });
+  
+      await alert.present();
+    });
+  }
+
 }

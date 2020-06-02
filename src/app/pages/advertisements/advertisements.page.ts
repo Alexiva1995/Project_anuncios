@@ -22,12 +22,11 @@ export class AdvertisementsPage implements OnInit {
     this.getAds();
   }
 
-  //Metodo para listar todos los anuncios
+  //Metodo para listar todos mis anuncios
   async getAds(){
     await this.utilities.displayLoading();
      await this.ads.getMyAds().then(async (res) => {
-      this.advertisements = res
-      this.contador = this.advertisements.length
+      this.advertisements = res;
       await this.utilities.dismissLoading();
       }, (err) => {
       this.utilities.dismissLoading();

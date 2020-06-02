@@ -3,9 +3,9 @@ import { PreloadAllModules, RouterModule, Routes } from '@angular/router';
 import { AuthGuard } from './guards/auth.guard';
 
 const routes: Routes = [
-  {
+   {
     path: 'login',
-    loadChildren: () => import('./tabs/tabs.module').then(m => m.TabsPageModule),
+    loadChildren: () => import('./pages/login/login.module').then(m => m.LoginPageModule),
     canActivate:[AuthGuard]
   }, 
   {
@@ -14,11 +14,8 @@ const routes: Routes = [
   },
   {
     path: '',
-    loadChildren: () => import('./pages/login/login.module').then( m => m.LoginPageModule)
-  },
-  {
-    path: 'tabs',
-    loadChildren: () => import('./tabs/tabs.module').then( m => m.TabsPageModule)
+    loadChildren: () => import('./pages/login/login.module').then( m => m.LoginPageModule),
+    canActivate:[AuthGuard]
   },
   {
     path: 'profile',
@@ -29,6 +26,10 @@ const routes: Routes = [
     loadChildren: () => import('./pages/tutorial/tutorial.module').then( m => m.TutorialPageModule)
   },
   {
+    path: 'explore',
+    loadChildren: () => import('./pages/explore/explore.module').then( m => m.ExplorePageModule)
+  },
+  {
     path: 'advertisements',
     loadChildren: () => import('./pages/advertisements/advertisements.module').then( m => m.AdvertisementsPageModule)
   },
@@ -37,13 +38,27 @@ const routes: Routes = [
     loadChildren: () => import('./pages/offer/offer.module').then( m => m.OfferPageModule)
   },
   {
-    path: 'uploadphoto',
+    path: 'uploadphoto/:id',
     loadChildren: () => import('./pages/uploadphoto/uploadphoto.module').then( m => m.UploadphotoPageModule)
   },
   {
     path: 'congratulations',
     loadChildren: () => import('./pages/congratulations/congratulations.module').then( m => m.CongratulationsPageModule)
-  }
+  },
+  {
+    path: 'seeadvertisements',
+    loadChildren: () => import('./pages/seeadvertisements/seeadvertisements.module').then( m => m.SeeadvertisementsPageModule)
+  },
+  {
+    path: 'popinfo',
+    loadChildren: () => import('./components/popinfo/popinfo.module').then( m => m.PopinfoPageModule)
+  },
+  {
+    path: 'tabs',
+ loadChildren: () => import('./tabs/tabs.module').then( m => m.TabsPageModule)
+   },
+
+
 
 ];
 @NgModule({

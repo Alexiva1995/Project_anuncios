@@ -8,7 +8,7 @@ const routes: Routes = [
     component: TabsPage,
     children: [
       {
-        path: '',
+        path: 'explore',
         loadChildren: () => import('../pages/explore/explore.module').then( m => m.ExplorePageModule)
       },
       {
@@ -16,19 +16,23 @@ const routes: Routes = [
         loadChildren: () => import('../pages/advertisements/advertisements.module').then( m => m.AdvertisementsPageModule)
       },
       {
+        path: 'offer',
+        loadChildren: () => import('../pages/offer/offer.module').then( m => m.OfferPageModule)
+      },
+      {
        path: 'profile',
     loadChildren: () => import('../pages/profile/profile.module').then( m => m.ProfilePageModule)
       },
       {
         path: '',
-        redirectTo: '/explore',
+        redirectTo: 'tabs/explore',
         pathMatch: 'full'
       }
     ]
   },
   {
     path: '',
-    redirectTo: '/explore',
+    redirectTo: 'tabs/explore',
     pathMatch: 'full'
   }
 ];
