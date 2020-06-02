@@ -94,6 +94,7 @@ export class ProfilePage implements OnInit {
   async cambiarImagen() {
     let img = await this.captureImage();
     this.imgSelected = 'data:image/png;base64,' + img;
+    this.form.controls.photoUrl.setValue(this.imgSelected);
   }
 
 
