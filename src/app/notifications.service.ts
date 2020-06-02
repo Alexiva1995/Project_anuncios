@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { FCM } from '@ionic-native/fcm/ngx'
 import { AlertController } from '@ionic/angular';
+import { CONSTANTES } from './services/constantes';
 @Injectable({
   providedIn: 'root'
 })
@@ -48,8 +49,11 @@ export class NotificationsService {
     });
   }
 
-  getToken(){
-    return this.fcm.getToken();
+  setToken(){
+    this.fcm.getToken().then((token) => {
+      localStorage.setItem(CONSTANTES.LOCAL_STORAGE.FCM, token)
+    })
+
   }
 
 }

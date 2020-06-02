@@ -39,9 +39,8 @@ export class RegisterPage implements OnInit {
     console.log(this.formGroup);
     
     await this.utilities.displayLoading();
-    this.notification.getToken().then((token) => {
-      this.formGroup.controls.token_fcm.setValue(token);
-    })
+    this.notification.setToken();
+    this.formGroup.controls.token_fcm.setValue(localStorage.getItem(CONSTANTES.LOCAL_STORAGE.FCM));
     let data = this.formGroup.value;
     try {
       // Iniciamos la consulta

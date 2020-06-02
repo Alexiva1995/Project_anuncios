@@ -5,7 +5,8 @@
 export const CONSTANTES = {
     LOCAL_STORAGE: {
         token: 'access_token',
-        tutorial: 'tutorial'
+        FCM: 'fcm_token',
+
     },
     MESSAGES: {
         error: 'Ha ocurrido un error inesperado. Por Favor contáctenos.'
