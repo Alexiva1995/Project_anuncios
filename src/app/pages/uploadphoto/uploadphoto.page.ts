@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Camera, CameraOptions } from '@ionic-native/camera/ngx';
-import { AlertController } from '@ionic/angular';
+import { AlertController, NavController } from '@ionic/angular';
 import { AdvertisementsService } from 'src/app/advertisements.service';
 import { UtilitiesService } from 'src/app/services/utilities/utilities.service';
 import { CONSTANTES } from 'src/app/services/constantes';
@@ -16,7 +16,7 @@ export class UploadphotoPage implements OnInit {
   dataRecibida:string;
   constructor(private camera: Camera, private alertCtrl: AlertController, 
               private ads: AdvertisementsService, private utilities: UtilitiesService,
-              private capturar:ActivatedRoute,) { }
+              private capturar:ActivatedRoute,private ruta: NavController) { }
 
   ngOnInit() {
     this.dataRecibida = this.capturar.snapshot.paramMap.get('id')
@@ -98,4 +98,9 @@ export class UploadphotoPage implements OnInit {
       })
     
   }
+
+  finalizar(){
+    this.ruta.navigateForward(['/congratulations'])
+  }
+
 }

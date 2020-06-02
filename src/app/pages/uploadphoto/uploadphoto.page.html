@@ -3,7 +3,7 @@
     <ion-buttons slot="start" class="color">
       <ion-back-button defaultHref="/offer"></ion-back-button>
     </ion-buttons>
-    <h1 class="title-header">Sube tus fotos</h1>
+    <h1 class="title-header">Publie tes photos</h1>
   </ion-toolbar>
 </ion-header>
 
@@ -14,18 +14,18 @@
       <div class="category">
         <div class="category-card">
           <ion-icon  src="assets/icon/foto.svg"></ion-icon>
-          <p>Tomar una foto</p>
+          <p>faire une photo</p>
         </div>
         <div class="category-card">
           <ion-icon  src="assets/icon/carpeta.svg"></ion-icon>
-          <p>Examinar</p>
+          <p>explorer</p>
         </div>
       </div>
     </div>
   
     <div class="footer">
       <div class="footer-button">
-        <ion-button expand="block" class="btn-custom-3">Siguiente</ion-button>
+        <ion-button expand="block" class="btn-custom-3" (click)="finalizar()">suivant</ion-button>
       </div>
     </div>
   </div>
