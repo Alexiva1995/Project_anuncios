@@ -3,7 +3,6 @@ import { AuthService } from 'src/app/services/auth/auth.service';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { UtilitiesService } from 'src/app/services/utilities/utilities.service';
 import { NavController } from '@ionic/angular';
-import { Router } from '@angular/router';
 import { CONSTANTES } from 'src/app/services/constantes';
 import { NotificationsService } from 'src/app/notifications.service';
 
@@ -27,6 +26,7 @@ export class RegisterPage implements OnInit {
       email: ['', Validators.compose([Validators.required, Validators.pattern('^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+.[a-zA-Z0-9-.]+$')])],
       password: ['', Validators.compose([Validators.required, Validators.minLength(6)])],
       token_fcm:[''],
+      categories:[null],
       confirm_password: ['', Validators.compose([Validators.required, Validators.minLength(6)])]
     });
   }
@@ -39,7 +39,7 @@ export class RegisterPage implements OnInit {
     console.log(this.formGroup);
     
     await this.utilities.displayLoading();
-    this.notification.setToken();
+    this.notification.refreshToken();
     this.formGroup.controls.token_fcm.setValue(localStorage.getItem(CONSTANTES.LOCAL_STORAGE.FCM));
     let data = this.formGroup.value;
     try {

@@ -4,6 +4,7 @@ import {
 import {
   ApiService
 } from './services/api/api.service';
+import { Observable } from 'rxjs/internal/Observable';
 
 
 @Injectable({
@@ -92,6 +93,18 @@ export class AdvertisementsService {
 
       const seq = this.api.post('api/auth/ads/store', data, true);
       seq.subscribe((res: any) => {
+        resolve(res);
+        console.log(res);
+      }, err => {
+        reject(err);
+      });
+    })
+  }
+
+  public uploadPhoto(data) {
+    return new Promise((resolve, reject) => {
+      let observer:Observable<any> = this.api.post('api/auth/user', data, true);
+      observer.subscribe((res: any) => {
         resolve(res);
         console.log(res);
       }, err => {

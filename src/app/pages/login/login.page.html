@@ -26,7 +26,7 @@
        
       </div>
       <div class="form-input" [ngClass]="{'errorInput': errorControl.password.errors?.minlength}">
-        <ion-input class="form-input-icon"  formControlName="mot de passe" placeholder="Contraseña *" inputmode="password" type={{type}}>
+        <ion-input class="form-input-icon"  formControlName="password" placeholder="mot de passe *" inputmode="password" type={{type}}>
           <ion-icon name="eye" class="icono" *ngIf="type == 'password'" (click)="type = 'text'"></ion-icon>
           <ion-icon name="eye-off" class="icono" *ngIf="type == 'text'" (click)="type = 'password'"></ion-icon>
         </ion-input>

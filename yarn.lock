@@ -997,6 +997,13 @@
   dependencies:
     "@types/cordova" latest
 
+"@ionic-native/fcm@^5.26.0":
+  version "5.26.0"
+  resolved "https://registry.npm.taobao.org/@ionic-native/fcm/download/@ionic-native/fcm-5.26.0.tgz#a274061ec0c2f309d897c2f1d53f88488bb1a19d"
+  integrity sha1-onQGHsDC8wnYl8Lx1T+ISIuxoZ0=
+  dependencies:
+    "@types/cordova" latest
+
 "@ionic-native/geolocation@^5.26.0":
   version "5.26.0"
   resolved "https://registry.npm.taobao.org/@ionic-native/geolocation/download/@ionic-native/geolocation-5.26.0.tgz#16221c777acf1777e5e2205c1909c48b90d81442"

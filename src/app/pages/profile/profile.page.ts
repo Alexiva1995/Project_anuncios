@@ -6,8 +6,7 @@ import {
 import {
   FormGroup,
   FormBuilder,
-  Validators,
-  FormControl
+  Validators
 } from '@angular/forms';
 import {
   UtilitiesService
@@ -86,14 +85,15 @@ export class ProfilePage implements OnInit {
 
   async ngOnInit() {
      await this.getUser(); 
-    // await this.getLocation();
+     await this.getLocation();
   }
 
 
   //**Método que inicia el cambio de imagen */
-  async cambiarImagen() {
+  async changeImage() {
     let img = await this.captureImage();
     this.imgSelected = 'data:image/png;base64,' + img;
+    this.form.controls.photoUrl.setValue(this.imgSelected);
   }
 
 
@@ -157,33 +157,8 @@ export class ProfilePage implements OnInit {
       await alert.present();
     });
   }
-  updateSearchResults() {
-    this.autocomplete.input = this.form.get("direccion").value;
-    if (this.autocomplete.input == '') {
-      this.autocompleteItems = [];
-      return;
-    }
-    this.GoogleAutocomplete.getPlacePredictions({
-        input: this.autocomplete.input,
-        componentRestrictions: {
-          country: 'arg'
-        }
-      },
-      (predictions, status) => {
-        this.autocompleteItems = [];
-        this.zone.run(() => {
-          predictions.forEach((prediction) => {
-            this.autocompleteItems.push(prediction);
-          });
-        });
-      });
-  }
 
 
-
-  limpiarDom() {
-    this.descripcion = null;
-  }
   goTo(url) {
     this.navCtrl.navigateForward(url)
   }
@@ -193,7 +168,6 @@ export class ProfilePage implements OnInit {
       this.longitud = resp.coords.longitude;
       this.form.controls['latitud'].setValue(resp.coords.latitude);
       this.form.controls['longitud'].setValue(resp.coords.longitude);
-      console.log("FORM", this.form.value);
       console.log(this.latitud, this.longitud);
     }).catch((error) => {
       console.log('Error getting location', error);

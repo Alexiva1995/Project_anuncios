@@ -80,3 +80,7 @@ ion-input {
   --color: #003E83;
   --padding-bottom: 2px;
 }
+
+.color {
+  color: #F5B224;
+}
