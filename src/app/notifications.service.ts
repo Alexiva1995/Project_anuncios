@@ -7,7 +7,7 @@ import { AlertController } from '@ionic/angular';
 export class NotificationsService {
   userId: string;
 
-  constructor(private fcm: FCM, private alertCtrl: AlertController) { }
+  constructor(private fcm: FCM, private alertController: AlertController) { }
 
 
   
@@ -25,18 +25,19 @@ export class NotificationsService {
       };
     });
     
-    this.fcm.onTokenRefresh().subscribe(token => {
+    this.fcm.onTokenRefresh().subscribe(async token => {
       //backend.registerToken(token);
-      let alert = this.alertCtrl.create({
-        title: 'Token',
-        subTitle: token,
-        buttons: ['Dismiss']
+      const alert = await this.alertController.create({
+        cssClass: 'my-custom-class',
+        header: 'token',
+        subHeader: ':',
+        message: token,
+        buttons: ['OK']
       });
-      alert.present();
+  
+      await alert.present();
     });
   }
 
-  private disabled(){
-    this.oneSignal.setSubscription(false);
-  }
+
 }
