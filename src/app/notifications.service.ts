@@ -1,13 +1,13 @@
 import { Injectable } from '@angular/core';
 import { FCM } from '@ionic-native/fcm/ngx'
-import { CONSTANTES } from './services/constantes';
+import { AlertController } from '@ionic/angular';
 @Injectable({
   providedIn: 'root'
 })
 export class NotificationsService {
   userId: string;
 
-  constructor(private fcm: FCM) { }
+  constructor(private fcm: FCM, private alertCtrl: AlertController) { }
 
 
   
@@ -27,6 +27,12 @@ export class NotificationsService {
     
     this.fcm.onTokenRefresh().subscribe(token => {
       //backend.registerToken(token);
+      let alert = this.alertCtrl.create({
+        title: 'Token',
+        subTitle: token,
+        buttons: ['Dismiss']
+      });
+      alert.present();
     });
   }
 
