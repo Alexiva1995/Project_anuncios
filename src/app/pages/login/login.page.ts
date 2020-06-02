@@ -46,7 +46,7 @@ export class LoginPage implements OnInit {
     let data = this.formGroup.value;
     //Validamos el formulario
     if(!this.formGroup.controls.email.valid || !this.formGroup.controls.password.valid){
-      this.utilities.displayToastButtonTime('Contrasena o correo electronico incorrecto');
+      this.utilities.displayToastButtonTime('Mot de passe ou adresse électronique incorrects');
       this.utilities.dismissLoading();
     }else{
       try {

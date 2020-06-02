@@ -136,16 +136,16 @@ export class ProfilePage implements OnInit {
     return new Promise(async resolve => {
 
       const alert = await this.alertCtrl.create({
-        header: 'Seleccionar Imágen',
-        message: '¿Qué desea hacer?',
+        header: 'Sélectionnez une image',
+        message: '¿Ce que vous voulez faire?',
         buttons: [{
-            text: "Tomar Foto",
+            text: "Prendre une photo",
             handler: () => {
               resolve(true);
             }
           },
           {
-            text: "Buscar en Galería",
+            text: "Rechercher dans la galerie",
             handler: () => {
               resolve(false);
             }
@@ -164,7 +164,7 @@ export class ProfilePage implements OnInit {
 
   async signOut() {
     const alert = await this.alertController.create({
-      message: '¿Seguro querés salir de Smarbunny?',
+      message: 'Vous êtes sûr de vouloir quitter Smarbunny ?',
       buttons: [{
         text: 'Cancelar',
         role: 'cancel',
@@ -173,7 +173,7 @@ export class ProfilePage implements OnInit {
           console.log('Confirm Cancel: data');
         }
       }, {
-        text: 'Si',
+        text: 'Yes',
         handler: async () => {
           await this.auth.logOut();
           this.navCtrl.navigateRoot('/login')
@@ -189,6 +189,7 @@ export class ProfilePage implements OnInit {
     await this.utilities.displayLoading();
     await this.auth.getUser().then(async (res) => {
       let data = res;
+      console.log("datos", res)
       this.form.controls.email.setValue(data['email']);
       this.form.controls.name.setValue(data['name']);
       this.form.controls.phone.setValue(data['phone']);
@@ -250,7 +251,7 @@ export class ProfilePage implements OnInit {
 
   async delete() {
     const alert = await this.alertController.create({
-      message: '¿Seguro querés dar de baja tu cuenta de SmartBunny?',
+      message: 'Êtes-vous sûr de vouloir clôturer votre compte SmartBunny?',
       buttons: [{
         text: 'Cancel',
         role: 'cancel',
@@ -259,7 +260,7 @@ export class ProfilePage implements OnInit {
           console.log('Confirm Cancel: blah');
         }
       }, {
-        text: 'Si',
+        text: 'Yes',
         handler: () => {
           //this.auth.delete(this.userId);
         }

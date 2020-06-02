@@ -45,7 +45,7 @@ export class RegisterPage implements OnInit {
       // Iniciamos la consulta
       this.service.signUp(data).then((res: any) => {
         this.utilities.dismissLoading();
-        this.utilities.displayToastButtonTime('Registro exitoso');
+        this.utilities.displayToastButtonTime('Enregistrement réussi');
       }, e => {
         //En caso de error
         console.log(e);
