@@ -82,5 +82,8 @@ export class AuthService {
       });
     })
   }
+  public delete(){
+   return true;
+  }
  
 }
