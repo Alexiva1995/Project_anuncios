@@ -25,9 +25,9 @@
     <ion-row>
       <ion-col size="12" *ngFor="let advertisement of advertisements">
 
-        <ion-card class="card" (click)="goTo('/login', advertisement)">
+        <ion-card class="card" (click)="goTo('/seeadvertisements', advertisement)">
           <div class="card-background">
-            <img [src]="advertisement.file" class="image-responsive">
+            <img [src]="'http://valdusoft.com/ad/' + advertisement.file" onerror="this.src='./assets/img/addPhoto.jpg'" class="image-responsive">
           </div>
           <ion-card-header>
             <ion-card-subtitle class="card-subtitle">{{advertisement.title}}</ion-card-subtitle>

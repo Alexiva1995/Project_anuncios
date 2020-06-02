@@ -17,6 +17,7 @@ export class LoginPage implements OnInit {
   public formGroup: FormGroup;
   public formGroup_: FormGroup;
   public type: string = 'password';
+  remitentId: string = '245562045849';
   constructor(
     private service: AuthService,
     private fb: FormBuilder,
@@ -30,7 +31,7 @@ export class LoginPage implements OnInit {
       email: ['', Validators.compose([Validators.required, Validators.pattern('^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+.[a-zA-Z0-9-.]+$')])],
       password: ['', Validators.compose([Validators.required, Validators.minLength(6)])],
       remember_me: [true],
-      token_fcm:['123456789'],
+      token_fcm:[this.remitentId],
     });
   }
 
@@ -40,10 +41,9 @@ export class LoginPage implements OnInit {
 
   async signIn() {
     await this.utilities.displayLoading();
-    //this.notification.refreshToken();
-    let token = localStorage.getItem(CONSTANTES.LOCAL_STORAGE.FCM);
+    let token = localStorage.getItem(CONSTANTES.LOCAL_STORAGE.FCM) || this.remitentId;
+    this.formGroup.controls.token_fcm.setValue(token);
     let data = this.formGroup.value;
-
     //Validamos el formulario
     if(!this.formGroup.controls.email.valid || !this.formGroup.controls.password.valid){
       this.utilities.displayToastButtonTime('Contrasena o correo electronico incorrecto');
@@ -86,10 +86,7 @@ export class LoginPage implements OnInit {
   //Metodo para obtener la informacion del usuario logueado
   async getUser(){
     // Iniciamos la consulta
-    await this.auth.getUser().then(async (res)=>{
-      let data = res;
-      //Activamos las notificaciones push para un usuario especifico
-      //this.notification.handlerNotifications();
+    await this.auth.getUser().then( ()=>{
       this.navCtrl.navigateRoot('/tabs/explore');
     },(err)=>{
       //En caso de error

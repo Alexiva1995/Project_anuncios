@@ -1,11 +1,14 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, NgZone } from '@angular/core';
 import { Camera, CameraOptions } from '@ionic-native/camera/ngx';
 import { AlertController } from '@ionic/angular';
 import { AdvertisementsService } from 'src/app/advertisements.service';
 import { UtilitiesService } from 'src/app/services/utilities/utilities.service';
 import { CONSTANTES } from 'src/app/services/constantes';
 import { ActivatedRoute } from '@angular/router';
-
+import {
+  Geolocation
+} from '@ionic-native/geolocation/ngx';
+declare var google;
 @Component({
   selector: 'app-uploadphoto',
   templateUrl: './uploadphoto.page.html',
@@ -14,13 +17,17 @@ import { ActivatedRoute } from '@angular/router';
 export class UploadphotoPage implements OnInit {
   imgSelected: string;
   dataRecibida:string;
+  userCity: any;
+  latLngResult: any;
   constructor(private camera: Camera, private alertCtrl: AlertController, 
               private ads: AdvertisementsService, private utilities: UtilitiesService,
-              private capturar:ActivatedRoute,) { }
+              private capturar:ActivatedRoute,
+              public zone: NgZone,
+              private geolocation: Geolocation) { }
 
   ngOnInit() {
     this.dataRecibida = this.capturar.snapshot.paramMap.get('id')
-    console.log( JSON.parse(this.dataRecibida))
+    this.getLocation();
   }
 
   async addImage() {
@@ -96,6 +103,37 @@ export class UploadphotoPage implements OnInit {
         this.utilities.displayToastButtonTime(err.error.message ? err.error.message : CONSTANTES.MESSAGES.error);
         console.log("getError", err);
       })
-    
+  }
+//Ubicacion
+  getLocation() {
+    this.geolocation.getCurrentPosition().then((resp) => {
+      this.getAddress(resp.coords.latitude, resp.coords.longitude, 'reverseGeocode')
+    }).catch((error) => {
+      console.log('Error getting location', error);
+    });
+  }
+
+  ///Direccion
+  async getAddress(lat: number, lng: number, type?) {
+    if (navigator.geolocation) {
+      let geocoder = await new google.maps.Geocoder();
+      let latlng = await new google.maps.LatLng(lat, lng);
+      let request = { latLng: latlng };
+      await geocoder.geocode(request, (results, status) => {
+        if (status == google.maps.GeocoderStatus.OK) {
+          let result = results[0];
+          this.zone.run(() => {
+            if (result != null) {
+              //Ciudad del usuario
+              this.userCity = result.formatted_address;
+              if (type === 'reverseGeocode') {
+                //Direccion completa
+                this.latLngResult = result.formatted_address;
+              }
+            }
+          })
+        }
+      });
+    }
   }
 }

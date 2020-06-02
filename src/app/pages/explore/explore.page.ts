@@ -3,6 +3,7 @@ import { UtilitiesService } from 'src/app/services/utilities/utilities.service';
 import { AdvertisementsService } from 'src/app/advertisements.service';
 import { CONSTANTES } from 'src/app/services/constantes';
 import { NavController } from '@ionic/angular';
+import { NavigationExtras } from '@angular/router';
 
 @Component({
   selector: 'app-explore',
@@ -37,8 +38,17 @@ export class ExplorePage implements OnInit {
   }
 
    //Metodo de enrutamiento de pantallas
-   goTo(url) {
-    this.navCtrl.navigateForward(url)
+   goTo(url, params?) {
+    if(params){
+      let navigationExtras: NavigationExtras = {
+        queryParams: {
+            data: JSON.stringify(params)
+        }
+    };
+      this.navCtrl.navigateForward(url, navigationExtras);
+    }else{
+      this.navCtrl.navigateForward(url);
+    }
   }
 
 }

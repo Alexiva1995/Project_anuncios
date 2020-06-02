@@ -4,8 +4,6 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { UtilitiesService } from 'src/app/services/utilities/utilities.service';
 import { NavController } from '@ionic/angular';
 import { CONSTANTES } from 'src/app/services/constantes';
-//import { NotificationsService } from 'src/app/notifications.service';
-
 @Component({
   selector: 'app-register',
   templateUrl: './register.page.html',
@@ -15,12 +13,12 @@ export class RegisterPage implements OnInit {
 
   public formGroup: FormGroup;
   public type: string = 'password';
+  remitentId: string = '245562045849';
   constructor(   private service: AuthService,
     private fb: FormBuilder,
     private utilities: UtilitiesService,
     private navCtrl: NavController,
-    public auth: AuthService,
-    //private notification: NotificationsService
+    public auth: AuthService
     ) {
     this.formGroup = this.fb.group({
       name: ['', Validators.required],
@@ -40,8 +38,7 @@ export class RegisterPage implements OnInit {
     console.log(this.formGroup);
     
     await this.utilities.displayLoading();
-    //this.notification.refreshToken();
-    let token = localStorage.getItem(CONSTANTES.LOCAL_STORAGE.FCM);
+    let token = localStorage.getItem(CONSTANTES.LOCAL_STORAGE.FCM) || this.remitentId;
     this.formGroup.controls.token_fcm.setValue(token);
     let data = this.formGroup.value;
     try {

@@ -85,7 +85,6 @@ export class ProfilePage implements OnInit {
 
   async ngOnInit() {
      await this.getUser(); 
-     await this.getLocation();
   }
 
 
@@ -162,17 +161,7 @@ export class ProfilePage implements OnInit {
   goTo(url) {
     this.navCtrl.navigateForward(url)
   }
-  getLocation() {
-    this.geolocation.getCurrentPosition().then((resp) => {
-      this.latitud = resp.coords.latitude;
-      this.longitud = resp.coords.longitude;
-      this.form.controls['latitud'].setValue(resp.coords.latitude);
-      this.form.controls['longitud'].setValue(resp.coords.longitude);
-      console.log(this.latitud, this.longitud);
-    }).catch((error) => {
-      console.log('Error getting location', error);
-    });
-  }
+
   async signOut() {
     const alert = await this.alertController.create({
       message: '¿Seguro querés salir de Smarbunny?',
