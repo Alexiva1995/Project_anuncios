@@ -1,10 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { UtilitiesService } from 'src/app/services/utilities/utilities.service';
-import { AdvertisementsService } from 'src/app/advertisements.service';
+import { AdvertisementsService } from 'src/app/services/advertisements/advertisements.service';
 import { CONSTANTES } from 'src/app/services/constantes';
 import { NavController } from '@ionic/angular';
 import { NavigationExtras } from '@angular/router';
-import { SharingService } from 'src/app/sharing.service';
+import { SharingService } from 'src/app/services/sharing/sharing.service';
 
 @Component({
   selector: 'app-explore',

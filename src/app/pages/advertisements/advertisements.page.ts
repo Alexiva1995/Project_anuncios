@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { PopoverController } from '@ionic/angular';
 import { PopinfoPage } from 'src/app/components/popinfo/popinfo.page';
-import { AdvertisementsService } from 'src/app/advertisements.service';
+import { AdvertisementsService } from 'src/app/services/advertisements/advertisements.service';
 import { UtilitiesService } from 'src/app/services/utilities/utilities.service';
 import { CONSTANTES } from 'src/app/services/constantes';
 

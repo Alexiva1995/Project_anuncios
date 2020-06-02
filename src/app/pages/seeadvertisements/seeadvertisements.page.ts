@@ -5,7 +5,7 @@ import {
 import {
   ActivatedRoute
 } from '@angular/router';
-import { SharingService } from 'src/app/sharing.service';
+import { SharingService } from 'src/app/services/sharing/sharing.service';
 
 @Component({
   selector: 'app-seeadvertisements',
