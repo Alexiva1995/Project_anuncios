@@ -15,7 +15,7 @@ export class ExplorePage implements OnInit {
   constructor(
               private utilities: UtilitiesService,
               private ads: AdvertisementsService,
-              private ruta: NavController
+              private navCtrl: NavController
   ) { }
 
   ngOnInit() {
@@ -36,8 +36,9 @@ export class ExplorePage implements OnInit {
     })
   }
 
-  seemore(){
-    this.ruta.navigateForward([`/seeadvertisements/`])
+   //Metodo de enrutamiento de pantallas
+   goTo(url) {
+    this.navCtrl.navigateForward(url)
   }
 
 }

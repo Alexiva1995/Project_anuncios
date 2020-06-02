@@ -48,6 +48,7 @@ export class AuthService {
       const seq = this.api.get('api/auth/logout', null, true);
       seq.subscribe((res: any) => {
         resolve(res);
+        localStorage.clear();
         console.log(res);
       }, err => {
         reject(err);
