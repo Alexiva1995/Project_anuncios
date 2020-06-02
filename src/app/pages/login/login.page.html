@@ -8,40 +8,40 @@
         <img src="assets/img/logo.png" alt="logo" class="logo">
       </div>
       <div class="header-subtitle">
-        Publica tus anuncios de manera gratuita
+        Publie tes publicités de maniere gratuit
       </div>
       <div class="header-buttons">
         <div class="button">
-          <ion-button expand="round" fill="outline" class="btn-custom-1">Ingresar</ion-button>
+          <ion-button expand="round" fill="outline" class="btn-custom-1">se connecter</ion-button>
         </div>
         <div class="button">
-          <ion-button expand="round" class="btn-custom-2" (click)="goTo('/register')">Registrarse</ion-button>
+          <ion-button expand="round" class="btn-custom-2" (click)="goTo('/register')">s'inscrire</ion-button>
         </div>
       </div>
     </div>
     <form class="form" [formGroup]="formGroup">
       <div class="form-input" [ngClass]="{'errorInput': errorControl.email.errors?.pattern}">
-        <ion-input  formControlName="email" placeholder="Correo electrónico *" inputmode="email" required>
+        <ion-input  formControlName="email" placeholder="adresse email *" inputmode="email" required>
         </ion-input>
        
       </div>
       <div class="form-input" [ngClass]="{'errorInput': errorControl.password.errors?.minlength}">
-        <ion-input class="form-input-icon"  formControlName="password" placeholder="Contraseña *" inputmode="password" type={{type}}>
+        <ion-input class="form-input-icon"  formControlName="mot de passe" placeholder="Contraseña *" inputmode="password" type={{type}}>
           <ion-icon name="eye" class="icono" *ngIf="type == 'password'" (click)="type = 'text'"></ion-icon>
           <ion-icon name="eye-off" class="icono" *ngIf="type == 'text'" (click)="type = 'password'"></ion-icon>
         </ion-input>
       </div>
-      <p>¿Olvidaste tu contraseña?</p>
+      <p>mot de passe oublié ?</p>
 
       <p class="align-center">Recordarme</p>
     </form>
     <div class="footer">
       <div class="footer-button">
-        <ion-button expand="block"  class="btn-custom-3" (click)="signIn()" [disabled]="formGroup.status == 'INVALID'">INGRESAR</ion-button>
+        <ion-button expand="block"  class="btn-custom-3" (click)="signIn()" [disabled]="formGroup.status == 'INVALID'">Connexion</ion-button>
     <!--     <p>Recordarme</p> -->
       </div>
       <div class="footer-account">
-        ¿Aún no tienes una cuenta? <b (click)="goTo('/register')">Regístrate</b>
+        pas encore de compte ?<b (click)="goTo('/register')">inscris-toi</b>
       </div>
     </div>
   </div>

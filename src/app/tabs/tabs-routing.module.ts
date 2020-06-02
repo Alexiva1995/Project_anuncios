@@ -16,6 +16,10 @@ const routes: Routes = [
         loadChildren: () => import('../pages/advertisements/advertisements.module').then( m => m.AdvertisementsPageModule)
       },
       {
+        path: 'offer',
+        loadChildren: () => import('../pages/offer/offer.module').then( m => m.OfferPageModule)
+      },
+      {
        path: 'profile',
     loadChildren: () => import('../pages/profile/profile.module').then( m => m.ProfilePageModule)
       },
