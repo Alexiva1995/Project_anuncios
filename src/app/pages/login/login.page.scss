@@ -1,67 +1,142 @@
-.item-version {
-  padding-right: 10px !important;
-  padding-bottom: 10px !important;
-  text-align: right !important;
+// COLORS 
+ $color-primary:#003E83;
+ $color-secondary:#F5B224;
+ $color-tertiary-light:#E3E3E3;
+ $color-tertiary-dark:#D6D6D6;
+ $color-base:#FFFFFF;
+
+*{
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
 }
-ion-content {
-  width: 100%;
+
+.errorInput{
+  border-bottom: solid 1px #f34242 !important;
+}
+ion-button{
+  margin: 0 auto;
+  display: flex;
+}
+
+// container
+.container{
   height: 100%;
-  img {
-    margin-top: 20px;
-    height: 180px;
-    width: auto;
-    margin-bottom: 20px;
+}
+
+// header
+.header{
+  background-image: url(../../../assets/img/fondo.png);
+  background-repeat: no-repeat;
+  background-size: 100% 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  align-items: center;
+  &-subtitle{
+    color: white;
+    opacity: .7;
   }
-  .title {
+  &-logo{
+    width: 80%;
+  }
+
+  &-buttons{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    margin-bottom: 1.3rem;
+  }
+
+  .button{
+    width: 90%;
+    height: 36px;
+  }
+
+  // Test
+  height:40vh;
+}
+
+.logo{
+ max-width: 100%;
+}
+
+.icono{
+  color:$color-primary ;
+  font-size: 22px;
+}
+
+// Body
+.form{
+  height: 30%;
+
+  &-input{
+    width: 90%;
+    margin:  0 auto;
+    margin-top: 1.5rem;
+    padding: .2rem;
+    border-bottom: 1px solid $color-primary;
+    &-icon{
+      display: flex;
+      flex-direction: row-reverse;
+    }
+  }
+
+  p{
+    margin: 0;
+    text-align: right;
+    margin-top: .4rem;
+    margin-right: 1.4rem;
+    color: $color-primary;
+  }
+
+}
+
+// footer
+.footer{
+  height: 25%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+
+  &-button{
+    width: 90%;
+    margin: 0 auto;
+  }
+
+  &-account{
     text-align: center;
-    font-size: 25px;
-    margin: auto;
-    font-weight: 550;
+    color: $color-primary;
+    margin-bottom: 3rem;
   }
-  .olvidoClave {
-    margin-top: 15px;
-    padding-bottom: 20px;
-    width: 100%;
+
+  p{
+    margin: 0;
     text-align: center;
+    margin-top: .4rem;
+    color: $color-primary;
   }
-  .content {
-    margin: 10px;
-  }
-  ion-row {
-    margin: auto;
-  }
+
 }
 
-.btn-inicio {
-  margin-top: 15px;
+
+// custom property
+.btn-custom-3{
+  --color:#FFFFFF;
+  --background:#F5B224;
+  --border-radius:25px;
+  height: 43px;
+}
+.btn-custom-2{
+  --color:#FFFFFF;
+  --background:#F5B224;
+}
+.btn-custom-1{
+  --color:#FFFFFF;
+  --border-color:rgba(245, 178, 36 , 0.5);
+}
+ion-input{
+  --color:#003E83;
+  --padding-bottom:2px;
 }
 
-.btn-otro {
-  margin: 15px 0px;
-}
-
-.body {
-  height: 100%;
-  padding: 15px;
-  background: url("/assets/img/fondo.jpg");
-}
-ion-label{
-  font-size: 25px!important;
-}
-ion-label.formul{
-  font-size: 20px!important;
-  margin-left: 10px;
-}
-.btn{
-  border: #7044ff 2px solid;
-  border-radius: 10px;
-}
-.btn-content{
-  padding: 0 15px !important;
-}
-.color-gris{
-  --color: #9a9a9a !important;
-}
-.color-tertiary{
-  color: #7044ff;
-}

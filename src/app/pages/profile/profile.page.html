@@ -1,138 +1,68 @@
 <ion-header>
-  <ion-toolbar color="tertiary" class="ion-text-center">
-      <ion-buttons slot="start">
-          <ion-button (click)="goTo('/home/ayuda')">
-            <ion-icon src="assets/SVG/libro-header.svg"></ion-icon>
-          </ion-button>
-        </ion-buttons>
-    <ion-title>PERFIL</ion-title>
-    <ion-buttons slot="end">
-        <ion-button>
-          <ion-icon src="assets/SVG/profile-header.svg"></ion-icon>
-        </ion-button>
-      </ion-buttons>
+  <ion-toolbar>
+    <ion-buttons slot="start" class="color">
+      <ion-back-button defaultHref="/"></ion-back-button>
+    </ion-buttons>
+    <ion-title class="title-custom">Perfil de usuario</ion-title>
+    <ion-title class="title-custom-right">Guardar</ion-title>
   </ion-toolbar>
 </ion-header>
-
 <ion-content>
-  <form [formGroup]="form">
-    <ion-grid>
-      <ion-row>
-        <ion-col size="12">
-          <div class="menu-header">
-            <ion-avatar class="avatar" (click)="captureImage()">
-              <img *ngIf="imgSelected" class="img-camera" [src]="imgSelected" onerror="this.src='assets/img/addPhoto.jpg'">
-              <img *ngIf="!imgSelected" src="/assets/icon/plus1.png" class="img-default" >
-            </ion-avatar>
-          </div>
-        </ion-col>
-      </ion-row>
-      <ion-row>
-        <ion-col size=" 12">
-          <ion-item lines="none">
-            <ion-label position="stacked" color="tertiary" class="margin-b-label">Nombre y Apellido<span class="ast">*</span></ion-label>
-            <ion-input type="text" formControlName="name" class="btn padding-input"></ion-input>
-          </ion-item>
-        </ion-col>
-      </ion-row>
-      <ion-row>
-        <ion-col size="12">
-          <ion-item lines="none">
-            <ion-label position="stacked" color="tertiary" class="margin-b-label">Dirección <span class="ast">*</span></ion-label>
-           <!--  <ion-input type="text" placeholder="" formControlName="direccion" class="btn padding-input" ></ion-input> -->
-            <ion-searchbar class="" placeholder="Buscar en Google" formControlName="direccion" (ionInput)="updateSearchResults()" (ionClear)="limpiarDom()"></ion-searchbar>
-          </ion-item>
-        <ion-item class="padding-0" [hidden]="autocompleteItems.length == 0">
-                <ion-list >
-                    <ion-item *ngFor="let item of autocompleteItems" tappable (click)="selectSearchResult(item.description)" class="padding-0">
-                        {{ item.description }}
-                    </ion-item>
-                </ion-list>
-        </ion-item>
-          <p class="sub-text" *ngIf="!form.controls.direccion.value">
-            Ingresá la dirección en la cual querés recibir tu tarjeta de membresía y tu obsequio de bienvenida
-          </p>
-        </ion-col>
-      </ion-row>
-      <ion-row>
-        <ion-col size="12">
-          <ion-item lines="none">
-            <ion-label position="stacked" color="tertiary" class="margin-b-label">Correo Electrónico <span class="ast">*</span></ion-label>
-            <ion-input type="email" formControlName="email" class="btn padding-input"></ion-input>
-          </ion-item>
-        </ion-col>
-      </ion-row>
-      <!-- <ion-row>
-        <ion-col size="12">
-          <ion-item lines="none">
-            <ion-label position="stacked" color="tertiary" class="margin-b-label">Contraseña <span class="ast">*</span></ion-label>
-            <ion-input type="password" formControlName="password" class="btn padding-input"></ion-input>
-          </ion-item>
-        </ion-col>
-      </ion-row>
-      <ion-row>
-        <ion-col size="12">
-          <ion-item lines="none">
-            <ion-label position="stacked" color="tertiary" class="margin-b-label">Repita la contraseña <span class="ast">*</span></ion-label>
-            <ion-input type="password" formControlName="password_confirmation" class="btn padding-input"></ion-input>
-          </ion-item>
-        </ion-col>
-      </ion-row> -->
-      <ion-row>
-        <ion-col size="12">
-          <ion-item lines="none">
-            <ion-label position="stacked" color="tertiary" class="margin-b-label">Teléfono <span class="ast">*</span></ion-label>
-            <ion-input type="tel" (keypress)="phoneFormat($event)" formControlName="telefono" class="btn padding-input" ></ion-input>
-          </ion-item>
-        </ion-col>
-      </ion-row>
-      <ion-row>
-        <ion-col size="12">
-          <ion-item lines="none">
-            <ion-label position="stacked" color="tertiary" class="margin-b-label">Fecha de Nacimiento <span class="ast">*</span></ion-label>
-            <ion-datetime displayFormat="DD/MM/YYYY" doneText="OK" cancelText="Cancelar" placeholder="Seleccionar.." formControlName="fecha_nac" class="btn">
-            </ion-datetime>
-          </ion-item>
-        </ion-col>
-      </ion-row>
-      <ion-row class="border-bottom">
-        <ion-col size="6">
-          <ion-button class="fs-16" color="tertiary" expand="full" type="button" shape="round" (click)="goTo('/tab/estado-de-tu-pago')">
-           ESTADO DEL PAGO <img src="" alt="">
-          </ion-button>
-        </ion-col>
-        <ion-col size="6">
-          <ion-button class="fs-16" color="tertiary" expand="full" type="button" shape="round" (click)="goTo('/tab/misLibros')" >
-            MIS PUBLICACIONES
-          </ion-button>
-        </ion-col>
-        <ion-col size="6" style="margin: 0 auto;" (click)="presentModal()">
-          <ion-button class="fs-16" color="tertiary" expand="full" type="button" shape="round" >
-           CAMBIO DE CONTRASEÑA
-          </ion-button>
-        </ion-col>
-      </ion-row>
+  <div class="container"> 
+    <div class="header">
+      <div class="header-logo" (click)="changeImage()">
+        <img [src]="errorControl.photoUrl.value" onerror="this.src='./assets/img/addPhoto.jpg'" alt="logo" class="logo">
+        <ion-icon name="add-circle" class="icono-custom"></ion-icon>
+      </div>
+    </div>
+    <p class="form-titulo">Información Basica</p>
+    <form class="form" [formGroup]="form">
+      
+      <div class="form-input">
+        <ion-label position="stacked" class="form-input-title">Nombre del usuario * </ion-label>
+        <ion-input formControlName="name"readonly>
+          <!-- <ion-icon name="person-outline" class="icono"></ion-icon> -->
+        </ion-input>
+      </div>
 
-      <ion-row>
-        <ion-col size="6" class="ion-text-center">
-          <ion-button class="fs-16" color="primary" expand="full" type="button" shape="round" (click)="delete()">
-            ELIMINAR CUENTA
+
+      <div class="form-input" [ngClass]="{'errorInput': errorControl.password.errors?.minlength}">
+        <ion-input class="form-input-icon" formControlName="password" placeholder="Contraseña actual *">
+          <ion-icon name="eye" class="icono"></ion-icon>
+          <!-- <ion-icon name="lock-closed-outline" class="icono"></ion-icon>
+          <ion-icon name="person-outline" class="icono edit"></ion-icon> -->
+        </ion-input>
+      </div>
+
+      <div class="form-input" [ngClass]="{'errorInput': errorControl.new_password.errors?.minlength}">
+        <ion-input class="form-input-icon" formControlName="new_password" placeholder="Contraseña nueva *">
+          <ion-icon name="eye" class="icono"></ion-icon>
+          <!-- <ion-icon name="lock-closed-outline" class="icono"></ion-icon>
+          <ion-icon name="person-outline" class="icono edit"></ion-icon> -->
+        </ion-input>
+      </div>
+
+      <div class="form-input" [ngClass]="{'errorInput': errorControl.confirm_password.value != errorControl.new_password.value && !errorControl.confirm_password.pristine}">
+        <ion-input class="form-input-icon" formControlName="confirm_password" placeholder="Repetir Contraseña *" >
+          <ion-icon name="eye" class="icono"></ion-icon>
+          <!-- <ion-icon name="lock-closed-outline" class="icono"></ion-icon>
+          <ion-icon name="person-outline" class="icono edit"></ion-icon> -->
+        </ion-input>
+      </div>
+
+    </form>
+    <div class="footer">
+      <div class="footer-button">
+        <ng-container *ngIf="errorControl.phone.pristine && errorControl.password.pristine">
+          <ion-button expand="block"  class="btn-custom-3" (click)="signOut()">
+            <ion-icon name="log-in-outline" class="iconobutton"></ion-icon>
+            Cerrar sesion
           </ion-button>
-        </ion-col>
-        <ion-col size="6" class="ion-text-center">
-          <ion-button class="fs-16" style="--background: #69ebeb;"  expand="full" type="button" shape="round" (click)="logout()">
-            CERRAR SESIÓN
-          </ion-button>
-        </ion-col>
-      </ion-row>
-    </ion-grid>
-  </form>
+  
+          <ion-button expand="block"  fill="outline" class="btn-custom-4" (click)="delete()">Darse de baja</ion-button>
+        </ng-container>
+      </div>
+        
+    </div>
+  </div>
 </ion-content>
-<ion-footer>
-  <ion-toolbar color="tertiary" class="ion-text-center">
-    <ion-button fill="clear" (click)="editar()" class="boton-registro" expand="block" [disabled]='checkForm()'>
-      <!-- <ion-icon slot="start" name="ios-checkmark-circle-outline"></ion-icon> -->
-      ACTUALIZAR
-    </ion-button>
-  </ion-toolbar>
-</ion-footer>

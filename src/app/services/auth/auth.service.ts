@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
 import { ApiService } from '../api/api.service';
+import { Observable } from 'rxjs/internal/Observable';
 @Injectable({
   providedIn: 'root'
 })
@@ -17,7 +17,7 @@ export class AuthService {
    * **/
   public signUp(data: any) {
     return new Promise((resolve, reject) => {
-      const seq = this.api.get('api/v1/clientes/listarTodos');
+      const seq = this.api.post('api/auth/register', data);
       seq.subscribe((res: any) => {
         resolve(res);
         console.log(res);
@@ -33,7 +33,19 @@ export class AuthService {
    * **/
   public signIn(data) {
     return new Promise((resolve, reject) => {
-      const seq = this.api.get('api/v1/clientes/listarTodos');
+      const seq = this.api.post('api/auth/login', data);
+      seq.subscribe((res: any) => {
+        resolve(res);
+        console.log(res);
+      }, err => {
+        reject(err);
+      });
+    })
+  }
+
+  public logOut() {
+    return new Promise((resolve, reject) => {
+      const seq = this.api.get('api/auth/logout', null, true);
       seq.subscribe((res: any) => {
         resolve(res);
         console.log(res);
@@ -44,12 +56,24 @@ export class AuthService {
   }
 
      /**
-   * Método para obtener la informacion de un usuario
+   * Método para obtener la informacion del usuario logueado
    * **/
   public getUser() {
     return new Promise((resolve, reject) => {
-      const seq = this.api.get('api/v1/clientes/listarTodos');
+      const seq = this.api.get('api/auth/user', null, true);
       seq.subscribe((res: any) => {
+        resolve(res);
+        console.log(res);
+      }, err => {
+        reject(err);
+      });
+    })
+  }
+
+  public editUser(data) {
+    return new Promise((resolve, reject) => {
+      let observer:Observable<any> = this.api.post('api/auth/user', data, true);
+      observer.subscribe((res: any) => {
         resolve(res);
         console.log(res);
       }, err => {

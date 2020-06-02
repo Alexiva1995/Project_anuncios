@@ -1,0 +1,53 @@
+<ion-header>
+  <ion-toolbar>
+    <div class="form-input">
+      <ion-input placeholder="Buscar en Smart Bunny Anuncios...">
+        <ion-icon src="assets/icon/lupa.svg" class="icono"></ion-icon>
+      </ion-input>
+    </div>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <p class="title">Categorias</p>
+  <div class="category">
+      <div class="category-card">
+        <ion-icon  src="assets/icon/tarjeta-azul.svg"></ion-icon>
+        <p>Carros - Camionetas - Camiones - Motos y otros</p>
+      </div>
+      <div class="category-card">
+        <ion-icon  src="assets/icon/tarjeta-naranja.svg"></ion-icon>
+        <p>Teléfonos - Tablets - Computadoras y otros</p>
+      </div>
+    </div>
+  <p class="title-secondary">Recomendaciones</p>
+  <ion-grid fixed>
+    <ion-row>
+      <ion-col size="12" *ngFor="let advertisement of advertisements">
+
+        <ion-card class="card">
+          <div class="card-background">
+            <img [src]="advertisement.file" class="image-responsive">
+          </div>
+          <ion-card-header>
+            <ion-card-subtitle class="card-subtitle">{{advertisement.title}}</ion-card-subtitle>
+            <ion-card-title class="card-title" *ngIf="advertisement.cost">{{advertisement.price}}</ion-card-title>
+        </ion-card-header>
+          <ion-card-content class="card-content">
+          {{advertisement.content}}
+        </ion-card-content>
+        <div class="card-footer">
+          <div class="card-footer-more">  
+            <span class="card-footer-more-title">Ver mas</span><ion-icon src="assets/icon/mas.svg" class="icono"></ion-icon>
+          </div>
+          <div class="card-footer-shared">  
+             <ion-icon src="assets/icon/compartir.svg" class="icono"></ion-icon>
+          </div>
+        </div>
+        </ion-card>
+
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+
+</ion-content>

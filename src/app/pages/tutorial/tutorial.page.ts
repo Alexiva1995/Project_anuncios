@@ -104,7 +104,6 @@ export class TutorialPage implements OnInit {
   }
 
   goTo(url) {
-    localStorage.setItem(CONSTANTES.LOCAL_STORAGE.tutorial, 'true');
     this.navCtrl.navigateForward(url)
   }
 

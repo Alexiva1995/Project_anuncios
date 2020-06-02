@@ -5,9 +5,8 @@ import { UtilitiesService } from 'src/app/services/utilities/utilities.service';
 import { CONSTANTES } from 'src/app/services/constantes';
 import { Router } from '@angular/router';
 import { AuthService } from 'src/app/services/auth/auth.service';
-/* import * as firebase from 'firebase';
- import { AngularFireAuth } from '@angular/fire/auth';   
- import { GooglePlus } from '@ionic-native/google-plus/ngx'; */
+import { NotificationsService } from 'src/app/notifications.service';
+
 @Component({
   selector: 'app-login',
   templateUrl: './login.page.html',
@@ -16,101 +15,84 @@ import { AuthService } from 'src/app/services/auth/auth.service';
 export class LoginPage implements OnInit {
 
   public formGroup: FormGroup;
-  formGroup_: any;
-  step: string = 'login';
+  public formGroup_: FormGroup;
+  public type: string = 'password';
   constructor(
     private service: AuthService,
     private fb: FormBuilder,
     private utilities: UtilitiesService,
     private navCtrl: NavController,
     private router: Router,
-    public userS: AuthService,
-   /*  private afAuth: AngularFireAuth,   
-     private googlePlus: GooglePlus  */
+    public auth: AuthService,
+    private notification: NotificationsService
   ) {
     this.formGroup = this.fb.group({
       email: ['', Validators.compose([Validators.required, Validators.pattern('^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+.[a-zA-Z0-9-.]+$')])],
-      password: ['', Validators.compose([Validators.required, Validators.minLength(8)])],
-      remember_me: [true]
+      password: ['', Validators.compose([Validators.required, Validators.minLength(6)])],
+      remember_me: [true],
+      token_fcm:[''],
     });
   }
-  update(){
-   let email;
-   email =  this.formGroup.get("email").value;
-   email = email.toLocaleLowerCase();
-   this.formGroup.controls['email'].setValue(email);
-  }
+
 
   ngOnInit() {
   }
 
-  async iniciarSesion() {
+  async signIn() {
     await this.utilities.displayLoading();
+    this.notification.refreshToken();
+    this.formGroup.controls.token_fcm.setValue(localStorage.getItem(CONSTANTES.LOCAL_STORAGE.FCM));
     let data = this.formGroup.value;
-    // this.service.loginp(data);
-    try {
-      // Iniciamos la consulta
-      this.service.signIn(data).then((res: any) => {
-        //Almacenamos en local storage el nombre del usuario
-        console.log(res)
-        localStorage.setItem(CONSTANTES.LOCAL_STORAGE.token, res.access_token);
+
+    //Validamos el formulario
+    if(!this.formGroup.controls.email.valid || !this.formGroup.controls.password.valid){
+      this.utilities.displayToastButtonTime('Contrasena o correo electronico incorrecto');
+      this.utilities.dismissLoading();
+    }else{
+      try {
+        // Iniciamos la consulta
+        this.service.signIn(data).then((res: any) => {
+          //Almacenamos en local storage el nombre del usuario
+          console.log(res)
+          //Guardamos el token recibido
+          localStorage.setItem(CONSTANTES.LOCAL_STORAGE.token, res.access_token);
+          this.notification.handlerNotifications();
+          this.utilities.dismissLoading();
+          this.getUser();
+        }, e => {
+          //En caso de error
+          this.utilities.dismissLoading();
+          console.log(e);
+          
+          this.utilities.displayToastButtonTime(e.error.message ? e.error.message : CONSTANTES.MESSAGES.error);
+          console.error(e);
+        })
+  
+      }
+      catch (e) {
         this.utilities.dismissLoading();
-        this.getUser();
-      }, e => {
-        //En caso de error
-        this.utilities.dismissLoading();
-        console.log(e);
-        
         this.utilities.displayToastButtonTime(e.error.message ? e.error.message : CONSTANTES.MESSAGES.error);
         console.error(e);
-      })
-
-    }
-    catch (e) {
-      this.utilities.dismissLoading();
-      this.utilities.displayToastButtonTime(e.error.message ? e.error.message : CONSTANTES.MESSAGES.error);
-      console.error(e);
+      }
     }
 
   }
 
-     /* async iniciarSesionGoogle() {
-     const res = await this.googlePlus.login({
-      'webClientId': '332692881398-t6ujib02qeqvb81q4gn10l1t382sa09c.apps.googleusercontent.com',
-      'offline': true
-    });
-    const resConfirmed = await this.afAuth.signInWithCredential(firebase.auth.GoogleAuthProvider.credential(res.idToken));
-    const user = resConfirmed.user;
-      this.service.loginp(user).then((res: any) => {
-       
-        console.log(res)
-        localStorage.setItem(CONSTANTES.LOCAL_STORAGE.token, res.access_token);
-        localStorage.setItem(CONSTANTES.LOCAL_STORAGE.fotoPerfil, user.photoURL);
-        localStorage.setItem(CONSTANTES.LOCAL_STORAGE.ayuda, 'true');
-     
-        this.getUser();
-      }, e => {
-        console.log(e);
-        
-        this.utilities.displayToastButtonTime(e.error.message ? e.error.message : CONSTANTES.MESSAGES.error);
-        console.error(e);
-      })
-  }   */
-
-
+  //Metodo de enrutamiento de pantallas
   goTo(url) {
     this.navCtrl.navigateForward(url)
   }
+
+  //Metodo para obtener la informacion del usuario logueado
   async getUser(){
-    
-    await this.userS.getUser().then(async (res)=>{
-      let data = JSON.parse(JSON.stringify(res));
-      //this.serviceNotification.getToken();
-      console.log("getUser",data);
-      //localStorage.setItem(CONSTANTES.LOCAL_STORAGE.usuario, data.id);
-      this.navCtrl.navigateRoot('/home/libros');
+    // Iniciamos la consulta
+    await this.auth.getUser().then(async (res)=>{
+      let data = res;
+      //Activamos las notificaciones push para un usuario especifico
+      this.notification.handlerNotifications();
+      this.navCtrl.navigateRoot('/tabs/explore');
     },(err)=>{
-      
+      //En caso de error
       this.utilities.displayToastButtonTime(err.error.message ? err.error.message : CONSTANTES.MESSAGES.error);
       console.log("getError", err );
     })
@@ -133,6 +115,7 @@ export class LoginPage implements OnInit {
 
   }
   catch (e) {
+     //En caso de error
     this.utilities.dismissLoading();
     this.utilities.displayToastButtonTime(e.error.message ? e.error.message : CONSTANTES.MESSAGES.error);
     console.error(e);
@@ -141,9 +124,7 @@ export class LoginPage implements OnInit {
   }
 
   get errorControl() {
+    //getting para recibir la informacion del formulario
     return this.formGroup.controls;
-  }
-  get errorControl_(){
-    return this.formGroup_.controls;
   }
 }
