@@ -9,7 +9,7 @@
 </ion-header>
 
 <ion-content>
-  <p class="title">Categorias</p>
+  <p class="title">Catégories</p>
   <div class="category">
       <div class="category-card">
         <ion-icon  src="assets/icon/tarjeta-azul.svg"></ion-icon>
@@ -20,12 +20,12 @@
         <p>Teléfonos - Tablets - Computadoras y otros</p>
       </div>
     </div>
-  <p class="title-secondary">Recomendaciones</p>
+  <p class="title-secondary">Recommandation</p>
   <ion-grid fixed>
     <ion-row>
       <ion-col size="12" *ngFor="let advertisement of advertisements">
 
-        <ion-card class="card">
+        <ion-card class="card" (click)="goTo('/login', advertisement)">
           <div class="card-background">
             <img [src]="advertisement.file" class="image-responsive">
           </div>
@@ -38,7 +38,7 @@
         </ion-card-content>
         <div class="card-footer">
           <div class="card-footer-more">  
-            <span class="card-footer-more-title">Ver mas</span><ion-icon src="assets/icon/mas.svg" class="icono"></ion-icon>
+            <span class="card-footer-more-title">voir plus</span><ion-icon src="assets/icon/mas.svg" class="icono"></ion-icon>
           </div>
           <div class="card-footer-shared">  
              <ion-icon src="assets/icon/compartir.svg" class="icono"></ion-icon>

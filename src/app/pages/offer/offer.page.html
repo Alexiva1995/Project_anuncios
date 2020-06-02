@@ -1,7 +1,7 @@
 <ion-header>
   <ion-toolbar>
     <ion-icon name="close-outline" class="icono" slot="start"></ion-icon>
-    <h1 class="title-header">¿Qué estás ofreciendo?</h1>
+    <h1 class="title-header">qu'est ce que tu offres ?</h1>
   </ion-toolbar>
 </ion-header>
 
@@ -20,23 +20,24 @@
       </div>
   </div>
 
-  <p class="title-secondary">Información del anuncio</p>
-  <form class="form">
+  <p class="title-secondary">information sur l'annonce</p>
+  <form class="form"  [formGroup]="formGroup" >
     <div class="form-input">
-      <ion-label position="stacked" class="form-input-title">Título del anuncio * </ion-label>
-      <ion-input>
+      <ion-label position="stacked"  class="form-input-title">titre de l'annonce* </ion-label>
+      <ion-input formControlName="titulo">
       </ion-input>
     </div>
     <div class="form-input">
-      <ion-label position="stacked" class="form-input-title">Descripción del anuncio * </ion-label>
-      <ion-input>
+      <ion-label position="stacked"   class="form-input-title">description de l'annonce* </ion-label>
+      <ion-input formControlName="descripcion">
       </ion-input>
     </div>
   </form>
 
   <div class="footer">
     <div class="footer-button">
-      <ion-button expand="block" class="btn-custom-3">Siguiente</ion-button>
+      <ion-button expand="block" class="btn-custom-3" (click)="finalizar()"
+      [disabled]="formGroup.status == 'INVALID'">suivant</ion-button>
     </div>
   </div>
 

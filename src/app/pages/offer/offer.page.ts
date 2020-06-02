@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { FormGroup, FormBuilder, Validators } from '@angular/forms';
+import { NavController } from '@ionic/angular';
 
 @Component({
   selector: 'app-offer',
@@ -6,34 +8,22 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./offer.page.scss'],
 })
 export class OfferPage implements OnInit {
-  evaluarColor:boolean
-  evaluarColor1:boolean
+  public formGroup: FormGroup;
+  constructor(private fb: FormBuilder,private ruta: NavController,) { 
+                this.formGroup = this.fb.group({
+                  titulo: ['', Validators.required],
+                  categoria: ['hola', Validators.required],
+                  descripcion: ['', Validators.required]
+                });
+              }
 
-  constructor() { }
-
+  
   ngOnInit() {
   }
 
-  selecion(valor) {
-    switch (valor) {
-      case 0:
-            {
-              this.evaluarColor = true
-              this.evaluarColor1 = false
-            }
-        break;
-
-      case 1:
-        {
-          this.evaluarColor = false
-          this.evaluarColor1 = true
-
-        }
-        break;
-
-      default:
-        break;
-    }
+  finalizar(){
+   console.log(this.formGroup.value)
+    this.ruta.navigateForward([`/uploadphoto/${JSON.stringify(this.formGroup.value)}`])
   }
 
 }

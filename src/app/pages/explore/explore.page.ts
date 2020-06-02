@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { UtilitiesService } from 'src/app/services/utilities/utilities.service';
 import { AdvertisementsService } from 'src/app/advertisements.service';
 import { CONSTANTES } from 'src/app/services/constantes';
+import { NavController } from '@ionic/angular';
 
 @Component({
   selector: 'app-explore',
@@ -13,7 +14,8 @@ export class ExplorePage implements OnInit {
 
   constructor(
               private utilities: UtilitiesService,
-              private ads: AdvertisementsService
+              private ads: AdvertisementsService,
+              private navCtrl: NavController
   ) { }
 
   ngOnInit() {
@@ -32,6 +34,11 @@ export class ExplorePage implements OnInit {
       this.utilities.displayToastButtonTime(err.error.message ? err.error.message : CONSTANTES.MESSAGES.error);
       console.log("getError", err);
     })
+  }
+
+   //Metodo de enrutamiento de pantallas
+   goTo(url) {
+    this.navCtrl.navigateForward(url)
   }
 
 }

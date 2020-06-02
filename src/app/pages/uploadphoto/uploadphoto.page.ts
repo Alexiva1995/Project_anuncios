@@ -4,6 +4,7 @@ import { AlertController } from '@ionic/angular';
 import { AdvertisementsService } from 'src/app/advertisements.service';
 import { UtilitiesService } from 'src/app/services/utilities/utilities.service';
 import { CONSTANTES } from 'src/app/services/constantes';
+import { ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-uploadphoto',
@@ -12,10 +13,14 @@ import { CONSTANTES } from 'src/app/services/constantes';
 })
 export class UploadphotoPage implements OnInit {
   imgSelected: string;
-
-  constructor(private camera: Camera, private alertCtrl: AlertController, private ads: AdvertisementsService, private utilities: UtilitiesService) { }
+  dataRecibida:string;
+  constructor(private camera: Camera, private alertCtrl: AlertController, 
+              private ads: AdvertisementsService, private utilities: UtilitiesService,
+              private capturar:ActivatedRoute,) { }
 
   ngOnInit() {
+    this.dataRecibida = this.capturar.snapshot.paramMap.get('id')
+    console.log( JSON.parse(this.dataRecibida))
   }
 
   async addImage() {
