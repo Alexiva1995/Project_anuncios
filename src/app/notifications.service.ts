@@ -51,6 +51,7 @@ export class NotificationsService {
 
   setToken(){
     this.fcm.getToken().then((token) => {
+      console.log(token);
       localStorage.setItem(CONSTANTES.LOCAL_STORAGE.FCM, token);
     })
   }
