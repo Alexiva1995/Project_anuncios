@@ -26,7 +26,7 @@ export class RegisterPage implements OnInit {
       email: ['', Validators.compose([Validators.required, Validators.pattern('^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+.[a-zA-Z0-9-.]+$')])],
       password: ['', Validators.compose([Validators.required, Validators.minLength(6)])],
       token_fcm:[''],
-      categories:[{}],
+      categories:[null],
       confirm_password: ['', Validators.compose([Validators.required, Validators.minLength(6)])]
     });
   }
@@ -39,7 +39,7 @@ export class RegisterPage implements OnInit {
     console.log(this.formGroup);
     
     await this.utilities.displayLoading();
-    this.notification.setToken();
+    this.notification.refreshToken();
     this.formGroup.controls.token_fcm.setValue(localStorage.getItem(CONSTANTES.LOCAL_STORAGE.FCM));
     let data = this.formGroup.value;
     try {

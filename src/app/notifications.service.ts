@@ -51,9 +51,23 @@ export class NotificationsService {
 
   setToken(){
     this.fcm.getToken().then((token) => {
-      localStorage.setItem(CONSTANTES.LOCAL_STORAGE.FCM, token)
+      localStorage.setItem(CONSTANTES.LOCAL_STORAGE.FCM, token);
     })
+  }
 
+  refreshToken(){
+    this.fcm.onTokenRefresh().subscribe(async token => {
+      localStorage.setItem(CONSTANTES.LOCAL_STORAGE.FCM, token);
+      const alert = await this.alertController.create({
+        cssClass: 'my-custom-class',
+        header: 'token',
+        subHeader: ':',
+        message: token,
+        buttons: ['OK']
+      });
+  
+      await alert.present();
+    });
   }
 
 }
