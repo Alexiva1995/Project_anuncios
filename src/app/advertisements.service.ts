@@ -80,16 +80,18 @@ export class AdvertisementsService {
     })
   }
 
-  public createAds(usuario,file,city) {
+  public createAds(usuario,file) {
     return new Promise((resolve, reject) => {
 
       const data = {
         title: usuario.titulo,
         content: usuario.descripcion,
         file: file,
-        origin_city: city,
+        origin_city: 'colombia - cali',
         categories: usuario.categoria
       }
+        
+      console.log(data)
 
       const seq = this.api.post('api/auth/ads/store', data, true);
       seq.subscribe((res: any) => {

@@ -29,7 +29,7 @@
                       <span class="card-background-status" >Publicado</span>
                      </ng-container>
                      <ng-template #newimg>
-                      <img src="assets/img/{{item.file}}" class="image-responsive">
+                      <img [src]="'http://valdusoft.com/ad/' + item.file" onerror="this.src='./assets/img/addPhoto.jpg'" class="image-responsive">
                       <span class="card-background-status" >Publicado</span>
                      </ng-template >
                   </div>

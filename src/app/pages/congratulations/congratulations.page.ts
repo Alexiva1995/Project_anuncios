@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { NavController } from '@ionic/angular';
 
 @Component({
   selector: 'app-congratulations',
@@ -7,9 +8,17 @@ import { Component, OnInit } from '@angular/core';
 })
 export class CongratulationsPage implements OnInit {
 
-  constructor() { }
+  constructor(private ruta: NavController) { }
 
   ngOnInit() {
+  }
+
+  publicar(){
+    this.ruta.navigateForward([`/tabs/explore`])
+  }
+
+  mantener(){
+    this.ruta.navigateForward([`/tabs/ads`])
   }
 
 }
