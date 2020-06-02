@@ -40,9 +40,8 @@ export class LoginPage implements OnInit {
 
   async signIn() {
     await this.utilities.displayLoading();
-    this.notification.getToken().then((token) => {
-      this.formGroup.controls.token_fcm.setValue(token);
-    })
+    this.notification.setToken();
+    this.formGroup.controls.token_fcm.setValue(localStorage.getItem(CONSTANTES.LOCAL_STORAGE.FCM));
     let data = this.formGroup.value;
 
     //Validamos el formulario
@@ -57,6 +56,7 @@ export class LoginPage implements OnInit {
           console.log(res)
           //Guardamos el token recibido
           localStorage.setItem(CONSTANTES.LOCAL_STORAGE.token, res.access_token);
+          this.notification.handlerNotifications();
           this.utilities.dismissLoading();
           this.getUser();
         }, e => {
