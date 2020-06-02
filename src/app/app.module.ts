@@ -13,7 +13,6 @@ import { HttpClientModule } from '@angular/common/http';
 import { Geolocation } from '@ionic-native/geolocation/ngx';
 import { WebView } from '@ionic-native/ionic-webview/ngx';
 import { FCM } from '@ionic-native/fcm/ngx';
-
 @NgModule({
   declarations: [AppComponent],
   entryComponents: [],
@@ -25,7 +24,7 @@ import { FCM } from '@ionic-native/fcm/ngx';
     WebView,
     Camera,
     Geolocation,
-    FCM
+    FCM,
   ],
   bootstrap: [AppComponent]
 })
