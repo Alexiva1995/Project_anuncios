@@ -1,6 +1,6 @@
 <ion-header>
   <ion-toolbar>
-    <ion-icon name="close-outline" class="icono" slot="start"></ion-icon>
+    <ion-icon name="close-outline" class="icono" slot="start" (click)="back()"></ion-icon>
     <ion-icon name="share-social-outline" class="icono2" slot="end" (click)="share()"></ion-icon>
   </ion-toolbar>
 </ion-header>
@@ -20,7 +20,7 @@
           </div>
         </div>
         <div class="header-footer">
-          <p class="header-footer-title">Descripción</p>
+          <p class="header-footer-title">La description</p>
           <p class="header-footer-description">{{data.content}}</p>
         </div>
       </div>

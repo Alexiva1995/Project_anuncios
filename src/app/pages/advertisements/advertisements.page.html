@@ -26,11 +26,11 @@
                   <div class="card-background">
                     <ng-container *ngIf="item.file.includes('mp4')" else newimg>
                       <img src="assets/img/avatar.jpg" class="image-responsive">
-                      <span class="card-background-status" >Publicado</span>
+                      <span class="card-background-status" >Publié</span>
                      </ng-container>
                      <ng-template #newimg>
                       <img [src]="'http://valdusoft.com/ad/' + item.file" onerror="this.src='./assets/img/addPhoto.jpg'" class="image-responsive">
-                      <span class="card-background-status" >Publicado</span>
+                      <span class="card-background-status" >Publié</span>
                      </ng-template >
                   </div>
                   <div class="card-content">
@@ -59,11 +59,11 @@
                    <div class="card-background">
                      <ng-container *ngIf="item.file.includes('mp4')" else newimg>
                       <img src="assets/img/avatar.jpg" class="image-responsive">
-                      <span class="card-background-status2" >No Publicado</span>
+                      <span class="card-background-status2" >Non publié</span>
                      </ng-container>
                      <ng-template #newimg>
                       <img src="assets/img/{{item.file}}" class="image-responsive">
-                      <span class="card-background-status2" >No Publicado</span>
+                      <span class="card-background-status2" >Non publié</span>
                      </ng-template >
                    </div>
                    <div class="card-content">

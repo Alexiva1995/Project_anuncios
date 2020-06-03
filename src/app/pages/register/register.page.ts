@@ -35,7 +35,7 @@ export class RegisterPage implements OnInit {
 
   //Metodo de registrar usuario
   async signUp() {
-    console.log(this.formGroup);
+    console.log(this.formGroup);  
     
     await this.utilities.displayLoading();
     let token = localStorage.getItem(CONSTANTES.LOCAL_STORAGE.FCM) || this.remitentId;
@@ -45,7 +45,8 @@ export class RegisterPage implements OnInit {
       // Iniciamos la consulta
       this.service.signUp(data).then((res: any) => {
         this.utilities.dismissLoading();
-        this.utilities.displayToastButtonTime('Enregistrement réussi');
+        this.utilities.displayToastButtonTime('Inscription réussie');
+        this.navCtrl.navigateForward('/login')
       }, e => {
         //En caso de error
         console.log(e);

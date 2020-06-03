@@ -136,10 +136,10 @@ export class ProfilePage implements OnInit {
     return new Promise(async resolve => {
 
       const alert = await this.alertCtrl.create({
-        header: 'Sélectionnez une image',
-        message: '¿Ce que vous voulez faire?',
+        header: "Sélectionnez l'image'",
+        message: "¿Quest-ce que tu aimerais faire?",
         buttons: [{
-            text: "Prendre une photo",
+            text: "Prendre photo",
             handler: () => {
               resolve(true);
             }
@@ -164,16 +164,16 @@ export class ProfilePage implements OnInit {
 
   async signOut() {
     const alert = await this.alertController.create({
-      message: 'Vous êtes sûr de vouloir quitter Smarbunny ?',
+      message: '¿Bien sûr, vous voulez sortir de Smarbunny?',
       buttons: [{
-        text: 'Cancelar',
+        text: 'Annuler',
         role: 'cancel',
         cssClass: 'secondary',
         handler: (data) => {
           console.log('Confirm Cancel: data');
         }
       }, {
-        text: 'Yes',
+        text: 'Oui',
         handler: async () => {
           await this.auth.logOut();
           this.navCtrl.navigateRoot('/login')
@@ -194,6 +194,7 @@ export class ProfilePage implements OnInit {
       this.form.controls.name.setValue(data['name']);
       this.form.controls.phone.setValue(data['phone']);
       this.form.controls.photoUrl.setValue(data['photo']);
+      this.imgSelected = data['photo'];
       await this.utilities.dismissLoading();
     }, (err) => {
       this.utilities.dismissLoading();
@@ -251,16 +252,16 @@ export class ProfilePage implements OnInit {
 
   async delete() {
     const alert = await this.alertController.create({
-      message: 'Êtes-vous sûr de vouloir clôturer votre compte SmartBunny?',
+      message: '¿Assurez-vous de désinscrire votre compte Smart Bunny?',
       buttons: [{
-        text: 'Cancel',
+        text: 'Annuler',
         role: 'cancel',
         cssClass: 'secondary',
         handler: (blah) => {
           console.log('Confirm Cancel: blah');
         }
       }, {
-        text: 'Yes',
+        text: 'Oui',
         handler: () => {
           this.auth.delete();
           this.signOut();

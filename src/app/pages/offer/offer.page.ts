@@ -34,7 +34,7 @@ export class OfferPage implements OnInit {
   }
 
   salir(){
-    this.ruta.navigateForward(['/tabs'])
+    this.ruta.navigateForward(['/tabs/explore'])
   }
 
 
