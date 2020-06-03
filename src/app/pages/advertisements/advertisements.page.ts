@@ -38,10 +38,10 @@ export class AdvertisementsPage implements OnInit {
   // Metodo para actualizar anuncios
   async updateAds(id,status){
     await this.utilities.displayLoading();
-     await this.ads.updateMyAds(id,status).then(async (res) => {
+     await this.ads.updateMyAds(id,status).then( (res) => {
       this.advertisements = [];
       this.getAds();
-      await this.utilities.dismissLoading();
+       this.utilities.dismissLoading();
       }, (err) => {
       this.utilities.dismissLoading();
       this.utilities.displayToastButtonTime(err.error.message ? err.error.message : CONSTANTES.MESSAGES.error);

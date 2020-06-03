@@ -6,7 +6,6 @@ import {
 } from '../api/api.service';
 import { Observable } from 'rxjs/internal/Observable';
 import { FileTransfer, FileUploadOptions, FileTransferObject } from '@ionic-native/file-transfer/ngx';
-import { File } from '@ionic-native/file';
 import { HttpHeaders } from '@angular/common/http';
 import { CONSTANTES } from '../constantes';
 
@@ -84,13 +83,12 @@ export class AdvertisementsService {
     })
   }
 
-  public createAds(usuario,file,city) {
+  public createAds(usuario, file, city) {
     return new Promise((resolve, reject) => {
 
       const data = {
         title: usuario.titulo,
         content: usuario.descripcion,
-        file: file,
         origin_city: city,
         categories: usuario.categoria
       }
@@ -109,7 +107,7 @@ export class AdvertisementsService {
 
 
 
-  public uploadPhoto(data) {
+  public uploadFile(data) {
     const fileTransfer: FileTransferObject = this.transfer.create();
     let headers = new HttpHeaders({
       'Content-Type': 'application/x-www-form-urlencoded',

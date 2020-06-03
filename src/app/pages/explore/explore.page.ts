@@ -29,9 +29,9 @@ export class ExplorePage implements OnInit {
   //Metodo para listar todos los anuncios
   async getAds(){
     await this.utilities.displayLoading();
-    await this.ads.getAds().then(async (res) => {
+    await this.ads.getAds().then( (res) => {
+     this.utilities.dismissLoading();
      this.advertisements = res['todos los anuncios'];
-      await this.utilities.dismissLoading();
     }, (err) => {
       this.utilities.dismissLoading();
       this.utilities.displayToastButtonTime(err.error.message ? err.error.message : CONSTANTES.MESSAGES.error);
