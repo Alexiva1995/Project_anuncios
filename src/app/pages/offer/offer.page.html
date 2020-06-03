@@ -6,41 +6,46 @@
 </ion-header>
 
 <ion-content>
-  <div class="container">
+  <ion-grid fixed="true">
+    <ion-row>
+      <ion-col size="12">
+      <div class="container">
 
-  <p class="title">Categorias</p>
-  <div class="category">
-      <div class="category-card" (click)="selecion(1)">
-        <ion-icon  src="assets/icon/tarjeta-azul.svg" class="opacidad"></ion-icon>
-        <p>Carros - Camionetas - Camiones - Motos y otros</p>
+      <p class="title">Categorias</p>
+      <div class="category">
+          <div class="category-card" (click)="selecion(1)">
+            <ion-icon  src="assets/icon/tarjeta-azul.svg" class="opacidad"></ion-icon>
+            <p>Carros - Camionetas - Camiones - Motos y otros</p>
+          </div>
+          <div class="category-card" (click)="selecion(2)">
+            <ion-icon  src="assets/icon/tarjeta-naranja.svg" class="opacidad"></ion-icon>
+            <p>Teléfonos - Tablets - Computadoras y otros</p>
+          </div>
       </div>
-      <div class="category-card" (click)="selecion(2)">
-        <ion-icon  src="assets/icon/tarjeta-naranja.svg" class="opacidad"></ion-icon>
-        <p>Teléfonos - Tablets - Computadoras y otros</p>
+
+      <p class="title-secondary">information sur l'annonce</p>
+      <form class="form"  [formGroup]="formGroup" >
+        <div class="form-input">
+          <ion-label position="stacked"  class="form-input-title">titre de l'annonce* </ion-label>
+          <ion-input formControlName="titulo">
+          </ion-input>
+        </div>
+        <div class="form-input">
+          <ion-label position="stacked"   class="form-input-title">description de l'annonce* </ion-label>
+          <ion-input formControlName="descripcion">
+          </ion-input>
+        </div>
+      </form>
+
+      <div class="footer">
+        <div class="footer-button">
+          <ion-button expand="block" class="btn-custom-3" (click)="finalizar()"
+          [disabled]="formGroup.status == 'INVALID'">suivant</ion-button>
+        </div>
       </div>
-  </div>
 
-  <p class="title-secondary">information sur l'annonce</p>
-  <form class="form"  [formGroup]="formGroup" >
-    <div class="form-input">
-      <ion-label position="stacked"  class="form-input-title">titre de l'annonce* </ion-label>
-      <ion-input formControlName="titulo">
-      </ion-input>
-    </div>
-    <div class="form-input">
-      <ion-label position="stacked"   class="form-input-title">description de l'annonce* </ion-label>
-      <ion-input formControlName="descripcion">
-      </ion-input>
-    </div>
-  </form>
-
-  <div class="footer">
-    <div class="footer-button">
-      <ion-button expand="block" class="btn-custom-3" (click)="finalizar()"
-      [disabled]="formGroup.status == 'INVALID'">suivant</ion-button>
-    </div>
-  </div>
-
-</div>
-
+      </div>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
 </ion-content>
