@@ -95,7 +95,7 @@ export class AdvertisementsService {
         
       const seq = this.api.post('api/auth/ads/store', data, true);
       seq.subscribe((res: any) => {
-        this.uploadFile(res, file)
+        this.uploadFile(res.id, file)
         resolve(true);
       }, err => {
         reject(false);
