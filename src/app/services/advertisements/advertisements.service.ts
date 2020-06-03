@@ -111,18 +111,16 @@ export class AdvertisementsService {
 
   public uploadPhoto(data) {
     const fileTransfer: FileTransferObject = this.transfer.create();
-
+    let headers = new HttpHeaders({
+      'Content-Type': 'application/x-www-form-urlencoded',
+      'Authorization': "Bearer " + localStorage.getItem(CONSTANTES.LOCAL_STORAGE.token)
+  })
     let options: FileUploadOptions = {
       fileKey: "photo",
       fileName: "file.jpg",
       chunkedMode: false,
       mimeType: "image/jpeg",
-      headers: {
-        headers: new HttpHeaders({
-            'Content-Type': 'application/x-www-form-urlencoded',
-            'Authorization': "Bearer " + localStorage.getItem(CONSTANTES.LOCAL_STORAGE.token)
-        })
-    }
+      headers: { headers }
     }
     //Data es la imagen
     fileTransfer.upload(data, 'http://valdusoft.com/ada/pi/auth/ads/store', options).then(data => {
