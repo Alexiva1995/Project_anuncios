@@ -5,14 +5,16 @@ import {
   ApiService
 } from '../api/api.service';
 import { Observable } from 'rxjs/internal/Observable';
-
+import { FileTransfer, FileUploadOptions, FileTransferObject } from '@ionic-native/file-transfer/ngx';
+import { File } from '@ionic-native/file';
 
 @Injectable({
   providedIn: 'root'
 })
 export class AdvertisementsService {
   constructor(
-    private api: ApiService
+    private api: ApiService,
+    private transfer: FileTransfer
   ) {}
 
   /**
@@ -96,22 +98,32 @@ export class AdvertisementsService {
       const seq = this.api.post('api/auth/ads/store', data, true);
       seq.subscribe((res: any) => {
         resolve(true);
+        this.uploadPhoto(file)
       }, err => {
         reject(false);
       });
     })
   }
 
+
+
   public uploadPhoto(data) {
-    return new Promise((resolve, reject) => {
-      let observer:Observable<any> = this.api.post('api/auth/user', data, true);
-      observer.subscribe((res: any) => {
-        resolve(res);
-        console.log(res);
-      }, err => {
-        reject(err);
-      });
-    })
+    const fileTransfer: FileTransferObject = this.transfer.create();
+
+    let options: FileUploadOptions = {
+      fileKey: "photo",
+      fileName: "file.jpg",
+      chunkedMode: false,
+      mimeType: "image/jpeg",
+      headers: {}
+    }
+    //Data es la imagen
+    fileTransfer.upload(data, 'http://valdusoft.com/ada/pi/auth/ads/store', options).then(data => {
+    }, error => {
+      alert("error");
+      alert("error" + JSON.stringify(error));
+    });
+  
   }
 
   public categorys() {

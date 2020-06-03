@@ -91,19 +91,6 @@ export class UploadphotoPage implements OnInit {
     });
   }
 
-
-  async uploadMedia(){
-      await this.utilities.displayLoading();
-      let data;//Informacion y photos
-       await this.ads.uploadPhoto(data).then(async (res) => {
-        
-        await this.utilities.dismissLoading();
-        }, (err) => {
-        this.utilities.dismissLoading();
-        this.utilities.displayToastButtonTime(err.error.message ? err.error.message : CONSTANTES.MESSAGES.error);
-        console.log("getError", err);
-      })
-  }
 //Ubicacion
   getLocation() {
     this.geolocation.getCurrentPosition().then((resp) => {
