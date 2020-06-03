@@ -111,7 +111,7 @@ export class AdvertisementsService {
       id:id
     }
      new Promise((resolve, reject) => {
-      let observer:Observable<any> = this.api.post('api/auth/ads/update-file64', null , true);
+      let observer:Observable<any> = this.api.post('api/auth/ads/update-file64', params, true);
       observer.subscribe((res: any) => {
         resolve(res);
         console.log(res);
