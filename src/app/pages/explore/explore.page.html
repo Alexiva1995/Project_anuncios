@@ -1,7 +1,7 @@
 <ion-header>
   <ion-toolbar>
     <div class="form-input">
-      <ion-input placeholder="Buscar en Smart Bunny Anuncios...">
+      <ion-input type="text" placeholder="Buscar en Smart Bunny Anuncios..." [(ngModel)]="searchTerm" (ionChange)="search($event)" >
         <ion-icon src="assets/icon/lupa.svg" class="icono"></ion-icon>
       </ion-input>
     </div>
@@ -13,17 +13,17 @@
   <div class="category">
       <div class="category-card">
         <ion-icon  src="assets/icon/tarjeta-azul.svg"></ion-icon>
-        <p>Carros - Camionetas - Camiones - Motos y otros</p>
+        <p>Voitures - Camions - Camions - Motos et autres</p>
       </div>
       <div class="category-card">
         <ion-icon  src="assets/icon/tarjeta-naranja.svg"></ion-icon>
-        <p>Teléfonos - Tablets - Computadoras y otros</p>
+        <p>Téléphones - Tablettes - Ordinateurs et autres</p>
       </div>
     </div>
   <p class="title-secondary">Recommandation</p>
   <ion-grid fixed>
     <ion-row>
-      <ion-col size="12" *ngFor="let advertisement of advertisements">
+      <ion-col size="12" *ngFor="let advertisement of searchResult">
 
         <ion-card class="card" (click)="goTo('/seeadvertisements', advertisement)">
           <div class="card-background">

@@ -5,8 +5,8 @@ import {
   ApiService
 } from '../api/api.service';
 import { Observable } from 'rxjs/internal/Observable';
-import { FileTransfer, FileUploadOptions, FileTransferObject } from '@ionic-native/file-transfer/ngx';
-import { HttpHeaders } from '@angular/common/http';
+ import { FileTransfer, FileUploadOptions, FileTransferObject } from '@ionic-native/file-transfer/ngx';
+ import { HttpHeaders } from '@angular/common/http';
 import { CONSTANTES } from '../constantes';
 
 @Injectable({
@@ -15,7 +15,7 @@ import { CONSTANTES } from '../constantes';
 export class AdvertisementsService {
   constructor(
     private api: ApiService,
-    private transfer: FileTransfer
+   /*  private transfer: FileTransfer */
   ) {}
 
   /**
@@ -97,7 +97,7 @@ export class AdvertisementsService {
 
       const seq = this.api.post('api/auth/ads/store', data, true);
       seq.subscribe((res: any) => {
-        this.uploadPhoto(file)
+        this.uploadFile(file)
         resolve(true);
       }, err => {
         reject(false);
@@ -107,7 +107,7 @@ export class AdvertisementsService {
 
 
 
-  public uploadFile(data) {
+   public uploadFile(data) {
     const fileTransfer: FileTransferObject = this.transfer.create();
     let headers = new HttpHeaders({
       'Content-Type': 'application/x-www-form-urlencoded',
@@ -121,13 +121,13 @@ export class AdvertisementsService {
       headers: { headers }
     }
     //Data es la imagen
-    fileTransfer.upload(data, 'http://valdusoft.com/ada/pi/auth/ads/store', options).then(data => {
+    fileTransfer.upload(data, 'http://valdusoft.com/ada/pi/auth/ads/update-file', options).then(data => {
     }, error => {
       alert("error");
       alert("error" + JSON.stringify(error));
     });
   
-  }
+  } 
 
   public categorys() {
     return new Promise((resolve, reject) => {

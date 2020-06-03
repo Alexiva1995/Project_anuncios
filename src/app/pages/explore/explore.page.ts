@@ -12,13 +12,15 @@ import { SharingService } from 'src/app/services/sharing/sharing.service';
   styleUrls: ['./explore.page.scss'],
 })
 export class ExplorePage implements OnInit {
-  advertisements: Object = [];
+  advertisements:any = [];
+  searchTerm: string = '';
+  searchResult: any;
 
   constructor(
               private utilities: UtilitiesService,
               private ads: AdvertisementsService,
               private navCtrl: NavController,
-              private sharing: SharingService
+              private sharing: SharingService 
   ) { }
 
   ngOnInit() {
@@ -32,6 +34,7 @@ export class ExplorePage implements OnInit {
     await this.ads.getAds().then( (res) => {
      this.utilities.dismissLoading();
      this.advertisements = res['todos los anuncios'];
+    this.searchResult = this.advertisements;
     }, (err) => {
       this.utilities.dismissLoading();
       this.utilities.displayToastButtonTime(err.error.message ? err.error.message : CONSTANTES.MESSAGES.error);
@@ -53,8 +56,24 @@ export class ExplorePage implements OnInit {
     }
   }
 
-  share(data){
-    this.sharing.sharing();
+  search(){
+    if(this.searchTerm != ''){
+      let result = this.advertisements.filter((item) => {
+        return item.title.toLowerCase().indexOf(
+          this.searchTerm.toLowerCase()) > -1;
+        });
+        if (result.length > 0) {
+          this.searchResult = result;
+        }else{
+          this.searchResult = this.advertisements;
+        }
+    }else{
+      this.searchResult = this.advertisements;
+    }
   }
+
+   share(data){
+    this.sharing.sharing();
+  } 
 
 }

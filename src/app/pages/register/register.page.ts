@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { AuthService } from 'src/app/services/auth/auth.service';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { UtilitiesService } from 'src/app/services/utilities/utilities.service';
-import { NavController } from '@ionic/angular';
+import { NavController, AlertController } from '@ionic/angular';
 import { CONSTANTES } from 'src/app/services/constantes';
 @Component({
   selector: 'app-register',
@@ -18,7 +18,8 @@ export class RegisterPage implements OnInit {
     private fb: FormBuilder,
     private utilities: UtilitiesService,
     private navCtrl: NavController,
-    public auth: AuthService
+    public auth: AuthService,
+    private alertController: AlertController
     ) {
     this.formGroup = this.fb.group({
       name: ['', Validators.required],
@@ -33,10 +34,50 @@ export class RegisterPage implements OnInit {
   ngOnInit() {
   }
 
+  async presentAlertSubscription() {
+    const alert = await this.alertController.create({
+      cssClass: 'my-custom-class',
+      header: 'Quelles catégories vous intéressent?',
+      inputs: [
+        {
+          name: 'automobile',
+          type: 'checkbox',
+          label: 'Automobile',
+          value: '1'
+        },
+        {
+          name: 'tech',
+          type: 'checkbox',
+          label: 'La technologie',
+          value: '2'
+        }
+      ],
+      buttons: [
+        {
+          text: 'Annuler',
+          role: 'cancel',
+          cssClass: 'secondary',
+          handler: () => {
+            console.log('Confirm Cancel');
+          }
+        }, {
+          text: "d'accord",
+          handler: (data) => {
+            if(data){
+              this.formGroup.controls.categories.setValue(data);
+            }
+           this.signUp();
+          }
+        }
+      ]
+    });
+
+    await alert.present();
+  }
+
   //Metodo de registrar usuario
   async signUp() {
     console.log(this.formGroup);  
-    
     await this.utilities.displayLoading();
     let token = localStorage.getItem(CONSTANTES.LOCAL_STORAGE.FCM) || this.remitentId;
     this.formGroup.controls.token_fcm.setValue(token);
