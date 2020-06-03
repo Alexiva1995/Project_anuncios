@@ -15,7 +15,7 @@ import { CONSTANTES } from '../constantes';
 export class AdvertisementsService {
   constructor(
     private api: ApiService,
-   /*  private transfer: FileTransfer */
+    private transfer: FileTransfer 
   ) {}
 
   /**
@@ -93,11 +93,9 @@ export class AdvertisementsService {
         categories: usuario.categoria
       }
         
-      console.log(data)
-
       const seq = this.api.post('api/auth/ads/store', data, true);
       seq.subscribe((res: any) => {
-        this.uploadFile(file)
+        this.uploadFile(res, file)
         resolve(true);
       }, err => {
         reject(false);
@@ -107,26 +105,20 @@ export class AdvertisementsService {
 
 
 
-   public uploadFile(data) {
-    const fileTransfer: FileTransferObject = this.transfer.create();
-    let headers = new HttpHeaders({
-      'Content-Type': 'application/x-www-form-urlencoded',
-      'Authorization': "Bearer " + localStorage.getItem(CONSTANTES.LOCAL_STORAGE.token)
-  })
-    let options: FileUploadOptions = {
-      fileKey: "photo",
-      fileName: "file.jpg",
-      chunkedMode: false,
-      mimeType: "image/jpeg",
-      headers: { headers }
+   public uploadFile(id, file) {
+    let params = {
+      image_file: file,
+      id:id
     }
-    //Data es la imagen
-    fileTransfer.upload(data, 'http://valdusoft.com/ada/pi/auth/ads/update-file', options).then(data => {
-    }, error => {
-      alert("error");
-      alert("error" + JSON.stringify(error));
-    });
-  
+     new Promise((resolve, reject) => {
+      let observer:Observable<any> = this.api.post('api/auth/ads/update-file64', null , true);
+      observer.subscribe((res: any) => {
+        resolve(res);
+        console.log(res);
+      }, err => {
+        reject(err);
+      });
+    })
   } 
 
   public categorys() {
