@@ -88,11 +88,11 @@ max-width: 100%;
 
 // footer
 .footer{
- height: 20%;
- margin-top: 1.4rem;
- display: flex;
- flex-direction: column;
- justify-content: space-between;
+ //height: 20%;
+ //margin-top: 1.4rem;
+ //display: flex;
+ //flex-direction: column;
+ //justify-content: space-between;
 
  &-button{
    width: 90%;
@@ -102,7 +102,6 @@ max-width: 100%;
  &-account{
    text-align: center;
    color: $color-primary;
-   margin-bottom: 3rem;
  }
 
  p{

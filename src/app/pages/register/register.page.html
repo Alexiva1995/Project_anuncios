@@ -45,13 +45,16 @@
       </div>
 
     </form>
-    <div class="footer">
-      <div class="footer-button">
-        <ion-button expand="block"  class="btn-custom-3" (click)="signUp()" [disabled]="formGroup.status == 'INVALID'">Connexion</ion-button>
-      </div>
-      <div class="footer-account">
-        Vous avez déjà un compte ? <b (click)="goTo('/login')">entrez</b>
-      </div>
-    </div>
+
   </div>
 </ion-content>
+<ion-footer>
+  <div class="footer">
+    <div class="footer-button">
+      <ion-button expand="block"  class="btn-custom-3" (click)="signUp()" [disabled]="formGroup.status == 'INVALID'">Connexion</ion-button>
+    </div>
+    <div class="footer-account">
+      Vous avez déjà un compte ? <b (click)="goTo('/login')">entrez</b>
+    </div>
+  </div>
+</ion-footer>

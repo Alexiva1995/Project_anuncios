@@ -46,6 +46,7 @@ export class RegisterPage implements OnInit {
       this.service.signUp(data).then((res: any) => {
         this.utilities.dismissLoading();
         this.utilities.displayToastButtonTime('Inscription réussie');
+        this.navCtrl.navigateForward('/login')
       }, e => {
         //En caso de error
         console.log(e);

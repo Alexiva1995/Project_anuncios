@@ -10,14 +10,24 @@
 
   <p class="title">Categorias</p>
   <div class="category">
-      <div class="category-card" (click)="selecion(1)">
-        <ion-icon  src="assets/icon/tarjeta-azul.svg" class="opacidad"></ion-icon>
-        <p>sports</p>
-      </div>
-      <div class="category-card" (click)="selecion(2)">
-        <ion-icon  src="assets/icon/tarjeta-naranja.svg" class="opacidad"></ion-icon>
-        <p>technologie</p>
-      </div>
+    <ion-grid>
+      <ion-row>
+        <ion-col size="6">
+          <div class="category-card" (click)="selecion(1)">
+            <ion-icon  src="assets/icon/tarjeta-azul.svg" class="opacidad"></ion-icon>
+            <p>sports</p>
+          </div>
+        </ion-col>
+        <ion-col size="6">
+          <div class="category-card" (click)="selecion(2)">
+            <ion-icon  src="assets/icon/tarjeta-naranja.svg" class="opacidad"></ion-icon>
+            <p>technologie</p>
+          </div>
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+    
+    
   </div>
 
   <p class="title-secondary">information sur l'annonce</p>

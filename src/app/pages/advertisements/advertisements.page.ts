@@ -39,7 +39,8 @@ export class AdvertisementsPage implements OnInit {
   async updateAds(id,status){
     await this.utilities.displayLoading();
      await this.ads.updateMyAds(id,status).then(async (res) => {
-      console.log("respuesta",res)
+      this.advertisements = [];
+      this.getAds();
       await this.utilities.dismissLoading();
       }, (err) => {
       this.utilities.dismissLoading();
