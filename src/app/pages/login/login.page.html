@@ -33,16 +33,19 @@
       </div>
       <p>mot de passe oublié ?</p>
 
-      <p class="align-center">Recordarme</p>
     </form>
-    <div class="footer">
-      <div class="footer-button">
-        <ion-button expand="block"  class="btn-custom-3" (click)="signIn()" [disabled]="formGroup.status == 'INVALID'">Connexion</ion-button>
-    <!--     <p>Recordarme</p> -->
-      </div>
-      <div class="footer-account">
-        pas encore de compte ?<b (click)="goTo('/register')">inscris-toi</b>
-      </div>
+  
+  </div>
+
+</ion-content>
+<ion-footer>
+  <div class="footer">
+    <div class="footer-button">
+      <ion-button expand="block"  class="btn-custom-3" (click)="signIn()" [disabled]="formGroup.status == 'INVALID'">Connexion</ion-button>
+  <!--     <p>Recordarme</p> -->
+    </div>
+    <div class="footer-account">
+      pas encore de compte ?<b (click)="goTo('/register')">inscris-toi</b>
     </div>
   </div>
-</ion-content>
+</ion-footer>

@@ -69,18 +69,17 @@ export class UploadphotoPage implements OnInit {
 
   selectOrigin() {
     return new Promise(async resolve => {
-
       const alert = await this.alertCtrl.create({
-        header: 'Seleccionar Imágen',
-        message: '¿Qué desea hacer?',
+        header: "Sélectionnez l'image'",
+        message: "¿Quest-ce que tu aimerais faire?",
         buttons: [{
-            text: "Tomar Foto",
+            text: "Prendre photo",
             handler: () => {
               resolve(true);
             }
           },
           {
-            text: "Buscar en Galería",
+            text: "Rechercher dans la galerie",
             handler: () => {
               resolve(false);
             }

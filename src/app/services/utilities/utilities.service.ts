@@ -138,7 +138,7 @@ export class UtilitiesService {
     try {
      /*  this.dismissLoading(); */
       this.loading = await this.loadingCtrl.create({
-        message: message ? message : 'Cargando'
+        message: message ? message : 'Chargement des données'
       });
       await this.loading.present();
       this.isLoadingPresent = true;

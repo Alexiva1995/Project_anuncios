@@ -13,7 +13,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { Geolocation } from '@ionic-native/geolocation/ngx';
 import { WebView } from '@ionic-native/ionic-webview/ngx';
 import { FCM } from '@ionic-native/fcm/ngx';
-import { SocialSharing } from '@ionic-native/social-sharing/ngx';
+//import { SocialSharing } from '@ionic-native/social-sharing/ngx';
 @NgModule({
   declarations: [AppComponent],
   entryComponents: [],
@@ -26,7 +26,7 @@ import { SocialSharing } from '@ionic-native/social-sharing/ngx';
     Camera,
     Geolocation,
     FCM,
-    SocialSharing
+   // SocialSharing
   ],
   bootstrap: [AppComponent]
 })

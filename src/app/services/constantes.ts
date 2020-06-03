@@ -9,6 +9,6 @@ export const CONSTANTES = {
 
     },
     MESSAGES: {
-        error: 'Ha ocurrido un error inesperado. Por Favor contáctenos.'
+        error: "Une erreur imprévue s'est produite. Contactez nous s'il vous plait."
     }
 }

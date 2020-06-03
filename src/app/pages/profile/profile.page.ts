@@ -136,16 +136,16 @@ export class ProfilePage implements OnInit {
     return new Promise(async resolve => {
 
       const alert = await this.alertCtrl.create({
-        header: 'Seleccionar Imágen',
-        message: '¿Qué desea hacer?',
+        header: "Sélectionnez l'image'",
+        message: "¿Quest-ce que tu aimerais faire?",
         buttons: [{
-            text: "Tomar Foto",
+            text: "Prendre photo",
             handler: () => {
               resolve(true);
             }
           },
           {
-            text: "Buscar en Galería",
+            text: "Rechercher dans la galerie",
             handler: () => {
               resolve(false);
             }
@@ -164,16 +164,16 @@ export class ProfilePage implements OnInit {
 
   async signOut() {
     const alert = await this.alertController.create({
-      message: '¿Seguro querés salir de Smarbunny?',
+      message: '¿Bien sûr, vous voulez sortir de Smarbunny?',
       buttons: [{
-        text: 'Cancelar',
+        text: 'Annuler',
         role: 'cancel',
         cssClass: 'secondary',
         handler: (data) => {
           console.log('Confirm Cancel: data');
         }
       }, {
-        text: 'Si',
+        text: 'Oui',
         handler: async () => {
           await this.auth.logOut();
           this.navCtrl.navigateRoot('/login')
@@ -193,6 +193,7 @@ export class ProfilePage implements OnInit {
       this.form.controls.name.setValue(data['name']);
       this.form.controls.phone.setValue(data['phone']);
       this.form.controls.photoUrl.setValue(data['photo']);
+      this.imgSelected = data['photo'];
       await this.utilities.dismissLoading();
     }, (err) => {
       this.utilities.dismissLoading();
@@ -250,16 +251,16 @@ export class ProfilePage implements OnInit {
 
   async delete() {
     const alert = await this.alertController.create({
-      message: '¿Seguro querés dar de baja tu cuenta de SmartBunny?',
+      message: '¿Assurez-vous de désinscrire votre compte Smart Bunny?',
       buttons: [{
-        text: 'Cancel',
+        text: 'Annuler',
         role: 'cancel',
         cssClass: 'secondary',
         handler: (blah) => {
           console.log('Confirm Cancel: blah');
         }
       }, {
-        text: 'Si',
+        text: 'Oui',
         handler: () => {
           this.auth.delete();
           this.signOut();
