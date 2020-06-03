@@ -33,7 +33,7 @@ export class UploadphotoPage implements OnInit {
 
   async addImage() {
     let img = await this.captureImage();
-    this.imgSelected = 'data:image/png;base64,' + img;
+    // this.imgSelected = 'data:image/png;base64,' + img;
   }
 
   async captureImage() {
@@ -137,19 +137,17 @@ export class UploadphotoPage implements OnInit {
     }
   }
 
-  async finalizar(){
-  
-    if(this.imgSelected == null){
-      return
-    }else{
+  async finalizar(){  
+      console.log("enviar imagen",this.imgSelected)
       // Metodo para finalizar
+      // await this.utilities.displayLoading();
       const valor = await this.ads.createAds(JSON.parse(this.dataRecibida), this.imgSelected , this.userCity || 'Bogotá - Colombia')
+      // await this.utilities.dismissLoading()
       if(valor){
         this.ruta.navigateForward(['/congratulations'])
       }else{
         console.log("error")
       }
-    }
 
   }
 

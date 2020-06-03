@@ -74,23 +74,15 @@ ion-button {
   flex-direction: row-reverse;
 }
 
-.footer {
-  height: 20%;
-  margin-top: 1.4rem;
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-}
-
 .footer-button {
   width: 90%;
   margin: 0 auto;
+  margin-top: 3rem;
 }
 
 .footer-account {
   text-align: center;
   color: #003E83;
-  margin-bottom: 3rem;
 }
 
 .footer p {

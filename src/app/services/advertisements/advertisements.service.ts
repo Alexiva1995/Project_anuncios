@@ -95,10 +95,9 @@ export class AdvertisementsService {
 
       const seq = this.api.post('api/auth/ads/store', data, true);
       seq.subscribe((res: any) => {
-        resolve(res);
-        console.log(res);
+        resolve(true);
       }, err => {
-        reject(err);
+        reject(false);
       });
     })
   }
