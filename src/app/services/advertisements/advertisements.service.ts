@@ -7,6 +7,8 @@ import {
 import { Observable } from 'rxjs/internal/Observable';
 import { FileTransfer, FileUploadOptions, FileTransferObject } from '@ionic-native/file-transfer/ngx';
 import { File } from '@ionic-native/file';
+import { HttpHeaders } from '@angular/common/http';
+import { CONSTANTES } from '../constantes';
 
 @Injectable({
   providedIn: 'root'
@@ -115,7 +117,12 @@ export class AdvertisementsService {
       fileName: "file.jpg",
       chunkedMode: false,
       mimeType: "image/jpeg",
-      headers: {}
+      headers: {
+        headers: new HttpHeaders({
+            'Content-Type': 'application/x-www-form-urlencoded',
+            'Authorization': "Bearer " + localStorage.getItem(CONSTANTES.LOCAL_STORAGE.token)
+        })
+    }
     }
     //Data es la imagen
     fileTransfer.upload(data, 'http://valdusoft.com/ada/pi/auth/ads/store', options).then(data => {
