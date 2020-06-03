@@ -5,7 +5,7 @@
 }
 
 .errorInput {
-  border: solid 1px #f34242;
+  border-bottom: solid 1px #f34242 !important;
 }
 
 ion-button {
@@ -128,4 +128,8 @@ ion-button {
 ion-input {
   --color: #003E83;
   --padding-bottom: 2px;
+}
+
+ion-grid {
+  min-height: 100%;
 }
